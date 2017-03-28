@@ -13,6 +13,8 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var velocityLabel: UILabel!
     
     var stopWatch = Timer()
     var startTime = TimeInterval()
@@ -128,41 +130,33 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         fullTime = NSMutableAttributedString(string: myString as
             String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
         
-        fullTime.addAttribute(NSForegroundColorAttributeName,
-                                              value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0),
-                                              range: NSRange(
-                                                location: 0,
-                                                length: 8))
-        fullTime.addAttribute(NSFontAttributeName,
-                              value: UIFont(
-                                name: "HelveticaNeue-UltraLight",
-                                size: 70.0)!,
-                              range: NSRange(
-                                location: 0,
-                                length: 5))
-        fullTime.addAttribute(NSFontAttributeName,
-                              value: UIFont(
-                                name: "HelveticaNeue-UltraLight",
-                                size: 30.0)!,
-                              range: NSRange(
-                                location: 5,
-                                length: 3))
-        fullTime.addAttribute(NSFontAttributeName,
-                              value: UIFont(
-                                name: "HelveticaNeue-Thin",
-                                size: 70.0)!,
-                              range: NSRange(
-                                location: 2,
-                                length: 1))
-        fullTime.addAttribute(NSFontAttributeName,
-                              value: UIFont(
-                                name: "HelveticaNeue-Thin",
-                                size: 40.0)!,
-                              range: NSRange(
-                                location: 5,
-                                length: 1))
+        fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
+        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!, range: NSRange(location: 0, length: 5))
+        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!, range: NSRange(location: 5, length: 3))
+        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(
+                                location: 2, length: 1))
+        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(
+                                location: 5, length: 1))
         
         timeLabel.attributedText = fullTime
+        
+        var km = NSMutableAttributedString()
+        
+        km = NSMutableAttributedString(string: distanceLabel.text! as
+            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 35.0)!])
+        km.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 15.0)!, range: NSRange(
+            location: 3, length: 3))
+        
+        distanceLabel.attributedText = km
+        
+        var vel = NSMutableAttributedString()
+        
+        vel = NSMutableAttributedString(string: velocityLabel.text! as
+            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 35.0)!])
+        vel.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 15.0)!, range: NSRange(
+            location: 3, length: 6))
+        
+        velocityLabel.attributedText = vel
     }
 }
 
