@@ -143,18 +143,18 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         var km = NSMutableAttributedString()
         
         km = NSMutableAttributedString(string: distanceLabel.text! as
-            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 35.0)!])
-        km.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 15.0)!, range: NSRange(
-            location: 3, length: 3))
+            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 45.0)!])
+        km.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 18.0)!, range: NSRange(
+            location: 2, length: 2))
         
         distanceLabel.attributedText = km
         
         var vel = NSMutableAttributedString()
         
         vel = NSMutableAttributedString(string: velocityLabel.text! as
-            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 35.0)!])
-        vel.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 15.0)!, range: NSRange(
-            location: 3, length: 6))
+            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 45.0)!])
+        vel.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 18.0)!, range: NSRange(
+            location: 2, length: 5))
         
         velocityLabel.attributedText = vel
     }

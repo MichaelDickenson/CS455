@@ -39,7 +39,7 @@ class GraphThreeViewController: UIViewController, ChartViewDelegate {
             counter += 1
         } else {
             kilometers.remove(at: 0)
-            kilometers.insert(generateRandomNumbers(), at: 19)
+            kilometers.insert(generateRandomNumbers(), at: 20)
         }
         
         setChart(dataPoints: kilometers, values: efficiency)
