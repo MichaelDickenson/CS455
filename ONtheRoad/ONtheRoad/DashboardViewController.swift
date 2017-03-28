@@ -90,9 +90,12 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
             var fullTime = NSMutableAttributedString()
             
             fullTime = NSMutableAttributedString(string: myString as
-                String, attributes: [NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 70.0)!])
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 30.0)!], range: NSRange(location: 8, length: 3))
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 70.0)!], range: NSRange(location: 3, length: 4))
+                String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
+            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!], range: NSRange(location: 8, length: 3))
+            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 3, length: 4))
+            fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
+            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(location: 2, length: 1))
+            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(location: 5, length: 1))
             
             timeLabel.attributedText = fullTime
         } else {
@@ -101,9 +104,12 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
             var fullTime = NSMutableAttributedString()
             
             fullTime = NSMutableAttributedString(string: myString as
-                String, attributes: [NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 70.0)!])
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 30.0)!], range: NSRange(location: 5, length: 3))
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 70.0)!], range: NSRange(location: 3, length: 1))
+                String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
+            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!], range: NSRange(location: 5, length: 3))
+            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 3, length: 1))
+            fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
+            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(location: 2, length: 1))
+            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(location: 5, length: 1))
             
             timeLabel.attributedText = fullTime
         }
@@ -120,9 +126,48 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         var fullTime = NSMutableAttributedString()
         
         fullTime = NSMutableAttributedString(string: myString as
-            String, attributes: [NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 70.0)!])
-        fullTime.addAttributes([NSFontAttributeName: UIFont(name: "Khmer Sangam MN", size: 30.0)!], range: NSRange(location: 5, length: 3))
+            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
+        
+        fullTime.addAttribute(NSForegroundColorAttributeName,
+                                              value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0),
+                                              range: NSRange(
+                                                location: 0,
+                                                length: 8))
+        fullTime.addAttribute(NSFontAttributeName,
+                              value: UIFont(
+                                name: "HelveticaNeue-UltraLight",
+                                size: 70.0)!,
+                              range: NSRange(
+                                location: 0,
+                                length: 5))
+        fullTime.addAttribute(NSFontAttributeName,
+                              value: UIFont(
+                                name: "HelveticaNeue-UltraLight",
+                                size: 30.0)!,
+                              range: NSRange(
+                                location: 5,
+                                length: 3))
+        fullTime.addAttribute(NSFontAttributeName,
+                              value: UIFont(
+                                name: "HelveticaNeue-Thin",
+                                size: 70.0)!,
+                              range: NSRange(
+                                location: 2,
+                                length: 1))
+        fullTime.addAttribute(NSFontAttributeName,
+                              value: UIFont(
+                                name: "HelveticaNeue-Thin",
+                                size: 40.0)!,
+                              range: NSRange(
+                                location: 5,
+                                length: 1))
         
         timeLabel.attributedText = fullTime
     }
 }
+
+
+
+
+
+
