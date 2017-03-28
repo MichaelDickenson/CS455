@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		066DACC11E8A41B6002B62E8 /* GraphTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066DACC01E8A41B6002B62E8 /* GraphTwoViewController.swift */; };
+		066DACC31E8A41EE002B62E8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; };
+		066DACC51E8A4211002B62E8 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		066DACC81E8A4964002B62E8 /* GraphThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */; };
 		06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2231E89BD000066AE3C /* AppDelegate.swift */; };
 		06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2251E89BD000066AE3C /* DashboardViewController.swift */; };
 		06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2271E89BD000066AE3C /* GarageViewController.swift */; };
@@ -19,6 +23,7 @@
 		06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */; };
 		06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */; };
 		06C2D25A1E8A0F350066AE3C /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */; };
+		B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +36,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		066DACC61E8A4212002B62E8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				066DACC51E8A4211002B62E8 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		066DACC01E8A41B6002B62E8 /* GraphTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTwoViewController.swift; sourceTree = "<group>"; };
+		066DACC21E8A41EE002B62E8 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/ONtheRoad-cusfdypjhzvtvlaizqdzrkdqhley/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphThreeViewController.swift; sourceTree = "<group>"; };
 		06C2D2201E89BD000066AE3C /* ONtheRoad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONtheRoad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2D2231E89BD000066AE3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06C2D2251E89BD000066AE3C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +70,9 @@
 		06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGraphsViewController.swift; sourceTree = "<group>"; };
 		06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphOneViewController.swift; sourceTree = "<group>"; };
 		06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = "../../../../Dropbox/CS455/CircleAnimation/KDCircularProgress-master/KDCircularProgress/KDCircularProgress.swift"; sourceTree = "<group>"; };
+		2654D2751129C5C6F9726DBE /* Pods-ONtheRoad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONtheRoad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad.debug.xcconfig"; sourceTree = "<group>"; };
+		805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ONtheRoad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5E4F1DF2FAE4CB2725C2367 /* Pods-ONtheRoad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONtheRoad.release.xcconfig"; path = "Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				066DACC31E8A41EE002B62E8 /* Charts.framework in Frameworks */,
+				B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +101,8 @@
 				06C2D2221E89BD000066AE3C /* ONtheRoad */,
 				06C2D2391E89BD010066AE3C /* ONtheRoadTests */,
 				06C2D2211E89BD000066AE3C /* Products */,
+				07239AD398877C5D62920BAA /* Pods */,
+				51861189C707F7A46085F8AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,10 +119,12 @@
 			isa = PBXGroup;
 			children = (
 				06C2D2291E89BD000066AE3C /* Main.storyboard */,
+				066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */,
 				06C2D2231E89BD000066AE3C /* AppDelegate.swift */,
 				06C2D2251E89BD000066AE3C /* DashboardViewController.swift */,
 				06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */,
 				06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */,
+				066DACC01E8A41B6002B62E8 /* GraphTwoViewController.swift */,
 				06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */,
 				06C2D2271E89BD000066AE3C /* GarageViewController.swift */,
 				06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */,
@@ -114,6 +145,24 @@
 			path = ONtheRoadTests;
 			sourceTree = "<group>";
 		};
+		07239AD398877C5D62920BAA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2654D2751129C5C6F9726DBE /* Pods-ONtheRoad.debug.xcconfig */,
+				F5E4F1DF2FAE4CB2725C2367 /* Pods-ONtheRoad.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		51861189C707F7A46085F8AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				066DACC21E8A41EE002B62E8 /* Charts.framework */,
+				805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,9 +170,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06C2D23F1E89BD010066AE3C /* Build configuration list for PBXNativeTarget "ONtheRoad" */;
 			buildPhases = (
+				58D83C9BE3666DCA7644980F /* [CP] Check Pods Manifest.lock */,
 				06C2D21C1E89BD000066AE3C /* Sources */,
 				06C2D21D1E89BD000066AE3C /* Frameworks */,
 				06C2D21E1E89BD000066AE3C /* Resources */,
+				02FE5E10D5DAAF1BB9C82488 /* [CP] Embed Pods Frameworks */,
+				801C68C0D1A93E426320E8B0 /* [CP] Copy Pods Resources */,
+				066DACC61E8A4212002B62E8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +267,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		02FE5E10D5DAAF1BB9C82488 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58D83C9BE3666DCA7644980F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		801C68C0D1A93E426320E8B0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		06C2D21C1E89BD000066AE3C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -223,10 +324,12 @@
 				06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */,
 				06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */,
 				06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */,
+				066DACC81E8A4964002B62E8 /* GraphThreeViewController.swift in Sources */,
 				06C2D25A1E8A0F350066AE3C /* KDCircularProgress.swift in Sources */,
 				06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */,
 				06C2D2521E8A0E1F0066AE3C /* LogsViewController.swift in Sources */,
 				06C2D2541E8A0E2C0066AE3C /* AnalysisViewController.swift in Sources */,
+				066DACC11E8A41B6002B62E8 /* GraphTwoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +466,7 @@
 		};
 		06C2D2401E89BD010066AE3C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2654D2751129C5C6F9726DBE /* Pods-ONtheRoad.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6X5B26J782;
@@ -376,6 +480,7 @@
 		};
 		06C2D2411E89BD010066AE3C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5E4F1DF2FAE4CB2725C2367 /* Pods-ONtheRoad.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6X5B26J782;

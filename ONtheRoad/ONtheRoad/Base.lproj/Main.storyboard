@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="-1" y="-1673"/>
         </scene>
-        <!--View Controller-->
+        <!--Graph Two View Controller-->
         <scene sceneID="rAh-eu-XoR">
             <objects>
-                <viewController storyboardIdentifier="graph2VC" id="Rim-ik-PfN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="graph2VC" id="Rim-ik-PfN" customClass="GraphTwoViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5YM-JV-lKU"/>
                         <viewControllerLayoutGuide type="bottom" id="9jc-0q-0Qk"/>
@@ -181,12 +181,29 @@
                     <view key="view" contentMode="scaleToFill" id="qWs-7S-coC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ek-6K-bh0" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="45" width="343" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="slW-hv-UnW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2ek-6K-bh0" firstAttribute="top" secondItem="qWs-7S-coC" secondAttribute="topMargin" constant="45" id="Fhw-e2-NPJ"/>
+                            <constraint firstItem="2ek-6K-bh0" firstAttribute="leading" secondItem="qWs-7S-coC" secondAttribute="leadingMargin" id="l2r-iB-eR0"/>
+                            <constraint firstItem="2ek-6K-bh0" firstAttribute="trailing" secondItem="qWs-7S-coC" secondAttribute="trailingMargin" id="yre-PY-qWd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="barChartView" destination="2ek-6K-bh0" id="k7g-3u-LY4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3u-HO-Xqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="-1672"/>
+            <point key="canvasLocation" x="789.60000000000002" y="-1672.7136431784108"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="hNz-n2-bh7">
@@ -250,15 +267,15 @@
                                     <action selector="startStopButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="hdp-Qz-uTc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qd-Kp-yh4">
-                                <rect key="frame" x="226" y="178" width="133" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="22 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qd-Kp-yh4">
+                                <rect key="frame" x="226" y="178" width="133" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="35"/>
                                 <color key="textColor" red="0.32156862749999998" green="0.61960784310000006" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000 km/hr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ8-lA-QuG">
-                                <rect key="frame" x="16" y="178" width="153" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="61 km/hr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ8-lA-QuG">
+                                <rect key="frame" x="16" y="178" width="153" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="35"/>
                                 <color key="textColor" red="0.32156862749999998" green="0.61960784310000006" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -289,10 +306,10 @@
             </objects>
             <point key="canvasLocation" x="789.60000000000002" y="-1010.6446776611695"/>
         </scene>
-        <!--View Controller-->
+        <!--Graph Three View Controller-->
         <scene sceneID="EL2-7q-Gjw">
             <objects>
-                <viewController storyboardIdentifier="graph3VC" id="1pg-N8-d9Q" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="graph3VC" id="1pg-N8-d9Q" customClass="GraphThreeViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xyi-If-Ofe"/>
                         <viewControllerLayoutGuide type="bottom" id="eaR-64-RwU"/>
@@ -300,12 +317,29 @@
                     <view key="view" contentMode="scaleToFill" id="Prm-kw-TvT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAU-sU-R4I" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="45" width="343" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="QDS-hZ-HXs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZAU-sU-R4I" firstAttribute="trailing" secondItem="Prm-kw-TvT" secondAttribute="trailingMargin" id="9VB-yP-S7y"/>
+                            <constraint firstItem="ZAU-sU-R4I" firstAttribute="leading" secondItem="Prm-kw-TvT" secondAttribute="leadingMargin" id="auM-QQ-8h8"/>
+                            <constraint firstItem="ZAU-sU-R4I" firstAttribute="top" secondItem="Xyi-If-Ofe" secondAttribute="bottom" constant="25" id="fVn-Ia-mZo"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lineChartView" destination="ZAU-sU-R4I" id="yE6-ix-Osh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHd-I5-Nv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1569" y="-1672"/>
+            <point key="canvasLocation" x="1568.8" y="-1672.7136431784108"/>
         </scene>
         <!--Home Graphs View Controller-->
         <scene sceneID="vME-b0-ABX">
