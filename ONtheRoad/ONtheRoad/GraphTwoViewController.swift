@@ -93,6 +93,7 @@ class GraphTwoViewController: UIViewController, ChartViewDelegate {
         
         chartDataSet.valueTextColor = .clear
         chartDataSet.setColor(.white, alpha: 0.8)
+        chartDataSet.highlightEnabled = false
     }
     
     func generateRandomNumbers() -> String {
