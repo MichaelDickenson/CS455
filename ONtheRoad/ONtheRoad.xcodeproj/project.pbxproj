@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2231E89BD000066AE3C /* AppDelegate.swift */; };
-		06C2D2261E89BD000066AE3C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2251E89BD000066AE3C /* FirstViewController.swift */; };
-		06C2D2281E89BD000066AE3C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2271E89BD000066AE3C /* SecondViewController.swift */; };
+		06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2251E89BD000066AE3C /* DashboardViewController.swift */; };
+		06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2271E89BD000066AE3C /* GarageViewController.swift */; };
 		06C2D22B1E89BD000066AE3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C2D2291E89BD000066AE3C /* Main.storyboard */; };
 		06C2D22D1E89BD000066AE3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C2D22C1E89BD000066AE3C /* Assets.xcassets */; };
 		06C2D2301E89BD000066AE3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C2D22E1E89BD000066AE3C /* LaunchScreen.storyboard */; };
 		06C2D23B1E89BD010066AE3C /* ONtheRoadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D23A1E89BD010066AE3C /* ONtheRoadTests.swift */; };
+		06C2D2521E8A0E1F0066AE3C /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */; };
+		06C2D2541E8A0E2C0066AE3C /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2531E8A0E2C0066AE3C /* AnalysisViewController.swift */; };
+		06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */; };
+		06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */; };
+		06C2D25A1E8A0F350066AE3C /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +34,8 @@
 /* Begin PBXFileReference section */
 		06C2D2201E89BD000066AE3C /* ONtheRoad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONtheRoad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2D2231E89BD000066AE3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06C2D2251E89BD000066AE3C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		06C2D2271E89BD000066AE3C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		06C2D2251E89BD000066AE3C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		06C2D2271E89BD000066AE3C /* GarageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageViewController.swift; sourceTree = "<group>"; };
 		06C2D22A1E89BD000066AE3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06C2D22C1E89BD000066AE3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06C2D22F1E89BD000066AE3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +43,11 @@
 		06C2D2361E89BD010066AE3C /* ONtheRoadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ONtheRoadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2D23A1E89BD010066AE3C /* ONtheRoadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ONtheRoadTests.swift; sourceTree = "<group>"; };
 		06C2D23C1E89BD010066AE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		06C2D2531E8A0E2C0066AE3C /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
+		06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGraphsViewController.swift; sourceTree = "<group>"; };
+		06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphOneViewController.swift; sourceTree = "<group>"; };
+		06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KDCircularProgress.swift; path = "../../../../Dropbox/CS455/CircleAnimation/KDCircularProgress-master/KDCircularProgress/KDCircularProgress.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +89,15 @@
 		06C2D2221E89BD000066AE3C /* ONtheRoad */ = {
 			isa = PBXGroup;
 			children = (
-				06C2D2231E89BD000066AE3C /* AppDelegate.swift */,
-				06C2D2251E89BD000066AE3C /* FirstViewController.swift */,
-				06C2D2271E89BD000066AE3C /* SecondViewController.swift */,
 				06C2D2291E89BD000066AE3C /* Main.storyboard */,
+				06C2D2231E89BD000066AE3C /* AppDelegate.swift */,
+				06C2D2251E89BD000066AE3C /* DashboardViewController.swift */,
+				06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */,
+				06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */,
+				06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */,
+				06C2D2271E89BD000066AE3C /* GarageViewController.swift */,
+				06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */,
+				06C2D2531E8A0E2C0066AE3C /* AnalysisViewController.swift */,
 				06C2D22C1E89BD000066AE3C /* Assets.xcassets */,
 				06C2D22E1E89BD000066AE3C /* LaunchScreen.storyboard */,
 				06C2D2311E89BD000066AE3C /* Info.plist */,
@@ -204,9 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06C2D2281E89BD000066AE3C /* SecondViewController.swift in Sources */,
+				06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */,
+				06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */,
+				06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */,
 				06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */,
-				06C2D2261E89BD000066AE3C /* FirstViewController.swift in Sources */,
+				06C2D25A1E8A0F350066AE3C /* KDCircularProgress.swift in Sources */,
+				06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */,
+				06C2D2521E8A0E1F0066AE3C /* LogsViewController.swift in Sources */,
+				06C2D2541E8A0E2C0066AE3C /* AnalysisViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +436,7 @@
 				06C2D2411E89BD010066AE3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06C2D2421E89BD010066AE3C /* Build configuration list for PBXNativeTarget "ONtheRoadTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +445,7 @@
 				06C2D2441E89BD010066AE3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

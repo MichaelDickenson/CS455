@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  DashboardViewController.swift
 //  ONtheRoad
 //
 //  Created by Santiago Félix Cárdenas on 2017-03-27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
