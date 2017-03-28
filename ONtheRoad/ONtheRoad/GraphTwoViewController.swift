@@ -70,8 +70,10 @@ class GraphTwoViewController: UIViewController, ChartViewDelegate {
         
         barChartView.data = chartData
         barChartView.chartDescription?.text = ""
-        barChartView.xAxis.labelPosition = .bothSided
-        barChartView.rightAxis.drawLabelsEnabled = false
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.xAxis.labelTextColor = Palette.InfoText
+        barChartView.xAxis.drawLabelsEnabled = false
+        barChartView.leftAxis.labelTextColor = Palette.InfoText
         barChartView.rightAxis.drawGridLinesEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
         
@@ -80,6 +82,17 @@ class GraphTwoViewController: UIViewController, ChartViewDelegate {
         barChartView.rightAxis.axisMinimum = 0.0
         barChartView.rightAxis.axisMaximum = 30.0
         barChartView.leftAxis.axisMinimum = 0.0
+        
+        barChartView.backgroundColor = UIColor.clear
+        barChartView.leftAxis.drawLabelsEnabled = true
+        barChartView.rightAxis.drawLabelsEnabled = false
+        barChartView.leftAxis.axisLineColor = UIColor.clear
+        barChartView.rightAxis.axisLineColor = UIColor.clear
+        barChartView.xAxis.axisLineColor = UIColor.clear
+        barChartView.legend.enabled = false
+        
+        chartDataSet.valueTextColor = .clear
+        chartDataSet.setColor(.white, alpha: 0.8)
     }
     
     func generateRandomNumbers() -> String {
