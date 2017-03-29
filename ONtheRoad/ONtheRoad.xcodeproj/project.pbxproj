@@ -11,6 +11,17 @@
 		066DACC31E8A41EE002B62E8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; };
 		066DACC51E8A4211002B62E8 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		066DACC81E8A4964002B62E8 /* GraphThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */; };
+		0696516E1E8C294A00349A49 /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696516D1E8C294A00349A49 /* AddVehicleViewController.swift */; };
+		069B33791E8C799700760F3A /* VehiclesProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33771E8C799700760F3A /* VehiclesProfileData.swift */; };
+		069B337A1E8C799700760F3A /* VehicleProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33781E8C799700760F3A /* VehicleProfile.swift */; };
+		069B33831E8C7A4B00760F3A /* MakeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B337B1E8C7A4B00760F3A /* MakeTableViewController.swift */; };
+		069B33841E8C7A4B00760F3A /* MakeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B337C1E8C7A4B00760F3A /* MakeTableViewCell.swift */; };
+		069B33851E8C7A4B00760F3A /* ModelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B337D1E8C7A4B00760F3A /* ModelTableViewController.swift */; };
+		069B33861E8C7A4B00760F3A /* ModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B337E1E8C7A4B00760F3A /* ModelTableViewCell.swift */; };
+		069B33871E8C7A4B00760F3A /* YearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B337F1E8C7A4B00760F3A /* YearTableViewController.swift */; };
+		069B33881E8C7A4B00760F3A /* YearTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33801E8C7A4B00760F3A /* YearTableViewCell.swift */; };
+		069B33891E8C7A4B00760F3A /* TrimTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33811E8C7A4B00760F3A /* TrimTableViewController.swift */; };
+		069B338A1E8C7A4B00760F3A /* TrimTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33821E8C7A4B00760F3A /* TrimTableViewCell.swift */; };
 		06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2231E89BD000066AE3C /* AppDelegate.swift */; };
 		06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2251E89BD000066AE3C /* DashboardViewController.swift */; };
 		06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2271E89BD000066AE3C /* GarageViewController.swift */; };
@@ -54,6 +65,17 @@
 		066DACC01E8A41B6002B62E8 /* GraphTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTwoViewController.swift; sourceTree = "<group>"; };
 		066DACC21E8A41EE002B62E8 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/ONtheRoad-cusfdypjhzvtvlaizqdzrkdqhley/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
 		066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphThreeViewController.swift; sourceTree = "<group>"; };
+		0696516D1E8C294A00349A49 /* AddVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
+		069B33771E8C799700760F3A /* VehiclesProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VehiclesProfileData.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/VehiclesProfileData.swift; sourceTree = "<group>"; };
+		069B33781E8C799700760F3A /* VehicleProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VehicleProfile.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/VehicleProfile.swift; sourceTree = "<group>"; };
+		069B337B1E8C7A4B00760F3A /* MakeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeTableViewController.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/MakeTableViewController.swift; sourceTree = "<group>"; };
+		069B337C1E8C7A4B00760F3A /* MakeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeTableViewCell.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/MakeTableViewCell.swift; sourceTree = "<group>"; };
+		069B337D1E8C7A4B00760F3A /* ModelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelTableViewController.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/ModelTableViewController.swift; sourceTree = "<group>"; };
+		069B337E1E8C7A4B00760F3A /* ModelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelTableViewCell.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/ModelTableViewCell.swift; sourceTree = "<group>"; };
+		069B337F1E8C7A4B00760F3A /* YearTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YearTableViewController.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/YearTableViewController.swift; sourceTree = "<group>"; };
+		069B33801E8C7A4B00760F3A /* YearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YearTableViewCell.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/YearTableViewCell.swift; sourceTree = "<group>"; };
+		069B33811E8C7A4B00760F3A /* TrimTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrimTableViewController.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/TrimTableViewController.swift; sourceTree = "<group>"; };
+		069B33821E8C7A4B00760F3A /* TrimTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrimTableViewCell.swift; path = ../../../../Dropbox/CS455/VehiclesAPI/VehiclesAPI/TrimTableViewCell.swift; sourceTree = "<group>"; };
 		06C2D2201E89BD000066AE3C /* ONtheRoad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONtheRoad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2D2231E89BD000066AE3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06C2D2251E89BD000066AE3C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +142,8 @@
 			children = (
 				06C2D2291E89BD000066AE3C /* Main.storyboard */,
 				06C2D2231E89BD000066AE3C /* AppDelegate.swift */,
+				069B33771E8C799700760F3A /* VehiclesProfileData.swift */,
+				069B33781E8C799700760F3A /* VehicleProfile.swift */,
 				06C2D2251E89BD000066AE3C /* DashboardViewController.swift */,
 				06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */,
 				06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */,
@@ -127,6 +151,15 @@
 				066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */,
 				06C2D2591E8A0F350066AE3C /* KDCircularProgress.swift */,
 				06C2D2271E89BD000066AE3C /* GarageViewController.swift */,
+				0696516D1E8C294A00349A49 /* AddVehicleViewController.swift */,
+				069B337B1E8C7A4B00760F3A /* MakeTableViewController.swift */,
+				069B337C1E8C7A4B00760F3A /* MakeTableViewCell.swift */,
+				069B337D1E8C7A4B00760F3A /* ModelTableViewController.swift */,
+				069B337E1E8C7A4B00760F3A /* ModelTableViewCell.swift */,
+				069B337F1E8C7A4B00760F3A /* YearTableViewController.swift */,
+				069B33801E8C7A4B00760F3A /* YearTableViewCell.swift */,
+				069B33811E8C7A4B00760F3A /* TrimTableViewController.swift */,
+				069B33821E8C7A4B00760F3A /* TrimTableViewCell.swift */,
 				06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */,
 				06C2D2531E8A0E2C0066AE3C /* AnalysisViewController.swift */,
 				06C2D22C1E89BD000066AE3C /* Assets.xcassets */,
@@ -320,16 +353,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069B337A1E8C799700760F3A /* VehicleProfile.swift in Sources */,
+				069B33851E8C7A4B00760F3A /* ModelTableViewController.swift in Sources */,
+				069B33831E8C7A4B00760F3A /* MakeTableViewController.swift in Sources */,
+				069B33841E8C7A4B00760F3A /* MakeTableViewCell.swift in Sources */,
 				06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */,
+				069B33861E8C7A4B00760F3A /* ModelTableViewCell.swift in Sources */,
+				0696516E1E8C294A00349A49 /* AddVehicleViewController.swift in Sources */,
 				06C2D2281E89BD000066AE3C /* GarageViewController.swift in Sources */,
 				06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */,
 				06C2D2241E89BD000066AE3C /* AppDelegate.swift in Sources */,
 				066DACC81E8A4964002B62E8 /* GraphThreeViewController.swift in Sources */,
+				069B33891E8C7A4B00760F3A /* TrimTableViewController.swift in Sources */,
+				069B33791E8C799700760F3A /* VehiclesProfileData.swift in Sources */,
 				06C2D25A1E8A0F350066AE3C /* KDCircularProgress.swift in Sources */,
 				06C2D2261E89BD000066AE3C /* DashboardViewController.swift in Sources */,
+				069B33871E8C7A4B00760F3A /* YearTableViewController.swift in Sources */,
 				06C2D2521E8A0E1F0066AE3C /* LogsViewController.swift in Sources */,
+				069B33881E8C7A4B00760F3A /* YearTableViewCell.swift in Sources */,
 				06C2D2541E8A0E2C0066AE3C /* AnalysisViewController.swift in Sources */,
 				066DACC11E8A41B6002B62E8 /* GraphTwoViewController.swift in Sources */,
+				069B338A1E8C7A4B00760F3A /* TrimTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
