@@ -26,6 +26,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var gasLabel: UILabel!
     @IBOutlet weak var torqueLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var addVehicleScroll: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +42,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     @IBAction func vehicleNameAction(_ sender: UITextField) {
-        vehicleName.resignFirstResponder()
-        
         if vehicleName.text! != "" {
             vehicleName.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
             vehicleName.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
@@ -52,27 +51,24 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     @IBAction func makeSegueAction(_ sender: UITextField) {
-        print("first")
-        //vehicleMake.resignFirstResponder()
+        vehicleMake.resignFirstResponder()
         vehicleMake.allowsEditingTextAttributes = false
-        self.performSegue(withIdentifier: "makeSegue", sender: nil)
+        performSegue(withIdentifier: "makeSegue", sender: nil)
     }
     
     @IBAction func modelSegueAction(_ sender: UITextField) {
-        //vehicleModel.resignFirstResponder()
-        vehicleModel.allowsEditingTextAttributes = false
+        self.vehicleModel.isUserInteractionEnabled = false
         self.performSegue(withIdentifier: "modelSegue", sender: nil)
     }
     
     @IBAction func yearSegue(_ sender: UITextField) {
-        //vehicleYear.resignFirstResponder()
-        vehicleYear.allowsEditingTextAttributes = false
+        self.vehicleYear.isUserInteractionEnabled = false
         self.performSegue(withIdentifier: "yearSegue", sender: nil)
     }
     
     @IBAction func trimSegue(_ sender: UITextField) {
-        //vehicleTrim.resignFirstResponder()
-        vehicleTrim.allowsEditingTextAttributes = false
+        print("Hello")
+        self.vehicleTrim.isUserInteractionEnabled = false
         self.performSegue(withIdentifier: "trimSegue", sender: nil)
     }
     
@@ -169,12 +165,16 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // MARK: Functions
     
     func setViewColors() {
+        // Disable scroll view delay of touch 
+        addVehicleScroll.delaysContentTouches = false
+        
         // Round corners for profile image
         self.vehicleImage.layer.cornerRadius = self.vehicleImage.frame.size.height / 2
         self.vehicleImage.clipsToBounds = true
+        
         // Border for image
         self.vehicleImage.layer.borderWidth = 2.0
-        self.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+        self.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor        
     }
     
     func openActionSheet() {

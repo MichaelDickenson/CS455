@@ -441,7 +441,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="makeSegueAction:" destination="F4I-sh-gmx" eventType="touchDown" id="763-Yk-pTV"/>
-                                                            <segue destination="zKQ-gx-cZX" kind="popoverPresentation" identifier="makeSegue" popoverAnchorView="f5S-Mw-gdJ" id="5OA-lY-LS4">
+                                                            <segue destination="zKQ-gx-cZX" kind="popoverPresentation" identifier="makeSegue" popoverAnchorView="f5S-Mw-gdJ" id="2VI-Y3-0Km">
                                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                             </segue>
                                                         </connections>
@@ -682,6 +682,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="840"/>
                     <connections>
+                        <outlet property="addVehicleScroll" destination="Q56-VX-Xrs" id="csv-yq-HlS"/>
                         <outlet property="cylinderLabel" destination="AqW-ho-mex" id="2rp-fl-lli"/>
                         <outlet property="efficiencyLabel" destination="xWT-FO-MsV" id="2x3-2i-5Zu"/>
                         <outlet property="gasLabel" destination="OVf-dw-pe2" id="4gB-bq-xII"/>
@@ -701,11 +702,6 @@
                 <tapGestureRecognizer id="Zru-IZ-DW0">
                     <connections>
                         <action selector="imageGestureRecognizer:" destination="F4I-sh-gmx" id="845-HW-ASD"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="hWu-Sm-esH">
-                    <connections>
-                        <action selector="makeGesture:" destination="F4I-sh-gmx" id="ttn-pN-ApT"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1009,6 +1005,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Vmt-DL-7jg">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UT2-gk-Ftp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L8r-sh-Xzt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M38-dz-DdB">
@@ -1020,7 +1017,6 @@
                         <segue destination="F4I-sh-gmx" kind="relationship" relationship="rootViewController" id="P7m-hF-RMc"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UT2-gk-Ftp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2501.5999999999999" y="-344.07796101949026"/>
         </scene>
