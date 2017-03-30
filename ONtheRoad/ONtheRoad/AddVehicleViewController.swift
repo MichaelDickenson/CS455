@@ -52,34 +52,32 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     @IBAction func makeSegueAction(_ sender: UITextField) {
-        vehicleModel.allowsEditingTextAttributes = false
-        
+        print("first")
+        //vehicleMake.resignFirstResponder()
+        vehicleMake.allowsEditingTextAttributes = false
         self.performSegue(withIdentifier: "makeSegue", sender: nil)
     }
     
     @IBAction func modelSegueAction(_ sender: UITextField) {
+        //vehicleModel.resignFirstResponder()
         vehicleModel.allowsEditingTextAttributes = false
-        
         self.performSegue(withIdentifier: "modelSegue", sender: nil)
     }
     
     @IBAction func yearSegue(_ sender: UITextField) {
+        //vehicleYear.resignFirstResponder()
         vehicleYear.allowsEditingTextAttributes = false
-        
         self.performSegue(withIdentifier: "yearSegue", sender: nil)
     }
     
     @IBAction func trimSegue(_ sender: UITextField) {
+        //vehicleTrim.resignFirstResponder()
         vehicleTrim.allowsEditingTextAttributes = false
-        
         self.performSegue(withIdentifier: "trimSegue", sender: nil)
     }
     
-    @IBAction func unwindToVehicleProfile(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? MakeTableViewController, var returnedMake = sourceViewController.returnThis {
-            if returnedMake == "Label" {
-                returnedMake = "Acura"
-            }
+    @IBAction func unwindToAddVehicle(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? MakeTableViewController, let returnedMake = sourceViewController.returnThis {
             vehicleMake.text = returnedMake
             vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: returnedMake, model: "", year: "", trim: "", type: "", id: "")
             VehicleProfileData.vehicleData.append(vehicles!)
