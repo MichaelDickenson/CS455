@@ -615,12 +615,16 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="4He-h0-gnj">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="4He-h0-gnj">
                                                 <rect key="frame" x="55" y="100" width="250" height="250"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="eVj-Ql-4gj"/>
                                                     <constraint firstAttribute="height" constant="250" id="fKb-zT-41Q"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Zru-IZ-DW0" appends="YES" id="Vhf-g6-8U8"/>
+                                                </connections>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -681,6 +685,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGk-nN-U0C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Zru-IZ-DW0">
+                    <connections>
+                        <action selector="imageGestureRecognizer:" destination="F4I-sh-gmx" id="845-HW-ASD"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3304.8000000000002" y="-344.07796101949026"/>
         </scene>
