@@ -34,6 +34,16 @@ class AddVehicleViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @IBAction func vehicleNameAction(_ sender: UITextField) {
+        if vehicleName.text! != "" {
+            vehicleName.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleName.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleName.layer.borderWidth = 1.0
+            vehicleName.layer.cornerRadius = 5.0
+        }
+    }
+    
     @IBAction func makeSegueAction(_ sender: UITextField) {
         resignFirstResponder()
         //isEditing = false
@@ -80,6 +90,14 @@ class AddVehicleViewController: UIViewController {
             vehicles = VehicleProfile(name: vehicleName.text!, make: returnedMake, model: "", year: "", trim: "", type: "", id: "")
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].make = returnedMake
+
+            if vehicleMake.text! != "Label" {
+                vehicleMake.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleMake.layer.borderWidth = 1.0
+                vehicleMake.layer.cornerRadius = 5.0
+            }
         }
         
         if let sourceViewController = sender.source as? ModelTableViewController, let returnedModel = sourceViewController.returnThis {
@@ -87,6 +105,14 @@ class AddVehicleViewController: UIViewController {
             vehicles = VehicleProfile(name: vehicleName.text!, make: vehicleMake.text!, model: returnedModel, year: "", trim: "", type: "", id: "")
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].model = returnedModel
+            
+            if vehicleModel.text! != "Label" {
+                vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleModel.layer.borderWidth = 1.0
+                vehicleModel.layer.cornerRadius = 5.0
+            }
         }
         
         if let sourceViewController = sender.source as? YearTableViewController, let returnedYear = sourceViewController.returnThis {
@@ -94,6 +120,14 @@ class AddVehicleViewController: UIViewController {
             vehicles = VehicleProfile(name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: returnedYear, trim: "", type: "", id: "")
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].year = returnedYear
+            
+            if vehicleYear.text! != "Label" {
+                vehicleYear.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleYear.layer.borderWidth = 1.0
+                vehicleYear.layer.cornerRadius = 5.0
+            }
         }
         
         if let sourceViewController = sender.source as? TrimTableViewController, let returnedTrim = sourceViewController.returnThis {
@@ -101,12 +135,31 @@ class AddVehicleViewController: UIViewController {
             vehicles = VehicleProfile(name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: vehicleTrim.text!, trim: returnedTrim, type: "", id: "")
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].trim = returnedTrim
+            
+            if vehicleTrim.text! != "Label" {
+                vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleTrim.layer.borderWidth = 1.0
+                vehicleTrim.layer.cornerRadius = 5.0
+            }
         }
+    }
+    
+    //MARK: Navigation
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Functions
     
     func setViewColors() {
-        
+        // Round corners for profile image
+        self.vehicleImage.layer.cornerRadius = self.vehicleImage.frame.size.height / 2
+        self.vehicleImage.clipsToBounds = true
+        // Border for image
+        self.vehicleImage.layer.borderWidth = 2.0
+        self.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
     }
 }

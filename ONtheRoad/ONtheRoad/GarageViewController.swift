@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  GarageViewController.swift
 //  ONtheRoad
 //
 //  Created by Santiago Félix Cárdenas on 2017-03-27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class GarageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,5 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -351,10 +352,10 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-1180"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Garage View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="GarageViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -400,26 +401,26 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q56-VX-Xrs">
                                 <rect key="frame" x="0.0" y="64" width="375" height="776"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQa-eg-25f">
-                                        <rect key="frame" x="8" y="-145" width="359" height="840"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQa-eg-25f">
+                                        <rect key="frame" x="8" y="-145" width="359" height="833.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="G17-rU-Rhj">
-                                                <rect key="frame" x="0.0" y="100" width="359" height="472"/>
+                                                <rect key="frame" x="0.0" y="370" width="359" height="222"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-Ct-GV2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="242"/>
-                                                    </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Vehicle Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nff-3g-fbV">
-                                                        <rect key="frame" x="0.0" y="250" width="359" height="38"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="vKx-OU-sIS"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="vehicleNameAction:" destination="F4I-sh-gmx" eventType="editingDidEnd" id="Vbi-6R-Dpd"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Make..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-Mw-gdJ">
-                                                        <rect key="frame" x="0.0" y="296" width="359" height="38"/>
+                                                        <rect key="frame" x="0.0" y="46" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="yQp-FV-u8V"/>
                                                         </constraints>
@@ -431,7 +432,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Model..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBz-Kf-VmG">
-                                                        <rect key="frame" x="0.0" y="342" width="359" height="38"/>
+                                                        <rect key="frame" x="0.0" y="92" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="JVw-yZ-Xeq"/>
                                                         </constraints>
@@ -443,7 +444,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Year..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q1f-98-WvI">
-                                                        <rect key="frame" x="0.0" y="388" width="359" height="38"/>
+                                                        <rect key="frame" x="0.0" y="138" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="9Kg-lo-lkB"/>
                                                         </constraints>
@@ -455,7 +456,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Trim..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rXe-uO-pAN">
-                                                        <rect key="frame" x="0.0" y="434" width="359" height="38"/>
+                                                        <rect key="frame" x="0.0" y="184" width="359" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="QK0-0l-EzE"/>
                                                         </constraints>
@@ -468,22 +469,19 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fwg-oo-xq5">
-                                                <rect key="frame" x="79" y="600" width="200" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="Kfx-TQ-IKM"/>
-                                                </constraints>
-                                                <segments>
-                                                    <segment title="Personal"/>
-                                                    <segment title="Work"/>
-                                                </segments>
-                                                <color key="tintColor" red="0.15686274510000001" green="0.39607843139999999" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
-                                            </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="t12-fS-7ab">
-                                                <rect key="frame" x="0.0" y="668" width="359" height="133"/>
+                                                <rect key="frame" x="0.0" y="612" width="359" height="191"/>
                                                 <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fwg-oo-xq5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="29"/>
+                                                        <segments>
+                                                            <segment title="Personal"/>
+                                                            <segment title="Work"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.15686274510000001" green="0.39607843139999999" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </segmentedControl>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-VF-nTt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="51.5"/>
+                                                        <rect key="frame" x="0.0" y="58" width="359" height="51.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPv-pl-tsO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="119.5" height="51.5"/>
@@ -548,7 +546,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G4p-9l-A4q">
-                                                        <rect key="frame" x="0.0" y="81.5" width="359" height="51.5"/>
+                                                        <rect key="frame" x="0.0" y="139.5" width="359" height="51.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2n7-LP-Ykz">
                                                                 <rect key="frame" x="0.0" y="0.0" width="119.5" height="51.5"/>
@@ -617,18 +615,25 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="4He-h0-gnj">
+                                                <rect key="frame" x="55" y="100" width="250" height="250"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="eVj-Ql-4gj"/>
+                                                    <constraint firstAttribute="height" constant="250" id="fKb-zT-41Q"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="t12-fS-7ab" firstAttribute="top" secondItem="Fwg-oo-xq5" secondAttribute="bottom" constant="40" id="1fI-yr-0i8"/>
-                                            <constraint firstItem="Fwg-oo-xq5" firstAttribute="centerX" secondItem="hQa-eg-25f" secondAttribute="centerX" id="4Qn-fm-kbN"/>
                                             <constraint firstItem="G17-rU-Rhj" firstAttribute="leading" secondItem="hQa-eg-25f" secondAttribute="leading" id="5fN-Cf-CdZ"/>
                                             <constraint firstAttribute="trailing" secondItem="G17-rU-Rhj" secondAttribute="trailing" id="DxR-ng-tq5"/>
-                                            <constraint firstItem="Fwg-oo-xq5" firstAttribute="centerY" secondItem="hQa-eg-25f" secondAttribute="centerY" constant="81.5" id="JdK-gL-moh"/>
+                                            <constraint firstItem="4He-h0-gnj" firstAttribute="top" secondItem="hQa-eg-25f" secondAttribute="top" constant="100" id="L1S-5F-r9D"/>
+                                            <constraint firstItem="4He-h0-gnj" firstAttribute="width" secondItem="hQa-eg-25f" secondAttribute="height" multiplier="0.3" id="LS5-r5-HLt"/>
                                             <constraint firstAttribute="trailing" secondItem="t12-fS-7ab" secondAttribute="trailing" id="Q69-Jx-bil"/>
                                             <constraint firstItem="t12-fS-7ab" firstAttribute="leading" secondItem="hQa-eg-25f" secondAttribute="leading" id="RIB-P9-cmX"/>
-                                            <constraint firstAttribute="height" constant="1065" id="S8t-Iw-1J4"/>
-                                            <constraint firstItem="G17-rU-Rhj" firstAttribute="top" secondItem="hQa-eg-25f" secondAttribute="top" constant="100" id="aAB-zT-tXx"/>
+                                            <constraint firstItem="t12-fS-7ab" firstAttribute="top" secondItem="G17-rU-Rhj" secondAttribute="bottom" constant="20" id="T3t-iy-cDa"/>
+                                            <constraint firstItem="G17-rU-Rhj" firstAttribute="top" secondItem="4He-h0-gnj" secondAttribute="bottom" constant="20" id="bZs-AW-pSs"/>
+                                            <constraint firstItem="4He-h0-gnj" firstAttribute="centerX" secondItem="hQa-eg-25f" secondAttribute="centerX" id="pQR-ef-Cwh"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -667,7 +672,7 @@
                         <outlet property="sizeLabel" destination="5MC-GP-KSu" id="G80-dC-8MU"/>
                         <outlet property="torqueLabel" destination="m4r-1t-y5R" id="ePU-V0-wqi"/>
                         <outlet property="typeSegmentControl" destination="Fwg-oo-xq5" id="UuP-qp-hwM"/>
-                        <outlet property="vehicleImage" destination="9bG-Ct-GV2" id="CGf-oI-UdD"/>
+                        <outlet property="vehicleImage" destination="4He-h0-gnj" id="uCe-Ya-Wcd"/>
                         <outlet property="vehicleMake" destination="f5S-Mw-gdJ" id="ZVs-3t-8Ow"/>
                         <outlet property="vehicleModel" destination="SBz-Kf-VmG" id="tfW-dq-5yt"/>
                         <outlet property="vehicleName" destination="nff-3g-fbV" id="yrt-k4-9U1"/>
