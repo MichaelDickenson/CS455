@@ -132,6 +132,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                 vehicleTrim.layer.cornerRadius = 5.0
             }
         }
+        
+        getVehicleSpecifications()
     }
     
     //MARK: Navigation
@@ -237,6 +239,67 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         //Notify view controller that an image is picked
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func getVehicleSpecifications() {
+        
+        let selectedStyleID = "101353967"
+        
+        let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
+        let urlExtra = "/equipment?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
+        let fullURL = URL(string: "\(urlBase)\(selectedStyleID)\(urlExtra)")
+        
+        do {
+            let specs = try Data(contentsOf: fullURL!)
+            let allSpecs = try JSONSerialization.jsonObject(with: specs, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
+            
+            if let aryJSON = allSpecs["equipment"] {
+                for index in 0...34 {
+                    
+                    let equipment = aryJSON[index] as! [String : AnyObject]
+                    let sectionName = equipment["name"] as! String
+                    
+                    if sectionName == "Specifications" {
+                        
+                        let attr = equipment["attributes"] as! NSArray
+                        var aryValues = attr[6] as! [String : AnyObject]
+                        var name = aryValues["name"] as! String
+                        var value = aryValues["value"] as! String
+                        
+                        print(name)
+                        print(value)
+                        efficiencyLabel.text = value
+                        
+                        aryValues = attr[7] as! [String : AnyObject]
+                        name = aryValues["name"] as! String
+                        value = aryValues["value"] as! String
+                        
+                        //print(name)
+                        //print(value)
+                    }
+                    
+                    if sectionName == "Engine" {
+                        print(index)
+                        let cylinder = equipment["cylinder"] as! Int
+                        let size = equipment["size"] as! Float
+                        let horsepower = equipment["horsepower"] as! Int
+                        let torque = equipment["torque"] as! Int
+                        let gas = (equipment["type"] as! String).capitalized
+                        
+                        cylinderLabel.text = "\(cylinder)"
+                        sizeLabel.text = "\(size)"
+                        horsepowerLabel.text = "\(horsepower)"
+                        torqueLabel.text = "\(torque)"
+                        gasLabel.text = gas
+                        
+                    }
+                }
+            }
+        }
+            
+        catch {
+            
+        }
     }
 }
 

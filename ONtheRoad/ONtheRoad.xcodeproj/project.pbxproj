@@ -147,10 +147,10 @@
 				063CE4651E8F14A30020DCCA /* MakeTableViewCell.swift */,
 				063CE4681E8F14A30020DCCA /* ModelTableViewController.swift */,
 				063CE4671E8F14A30020DCCA /* ModelTableViewCell.swift */,
-				063CE46A1E8F14A30020DCCA /* TrimTableViewController.swift */,
-				063CE4691E8F14A30020DCCA /* TrimTableViewCell.swift */,
 				063CE46C1E8F14A30020DCCA /* YearTableViewController.swift */,
 				063CE46B1E8F14A30020DCCA /* YearTableViewCell.swift */,
+				063CE46A1E8F14A30020DCCA /* TrimTableViewController.swift */,
+				063CE4691E8F14A30020DCCA /* TrimTableViewCell.swift */,
 			);
 			name = "Add Vehicle";
 			sourceTree = "<group>";
