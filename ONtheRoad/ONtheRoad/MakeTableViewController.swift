@@ -16,12 +16,61 @@ class MakeTableViewController: UITableViewController {
     var selectedIndex = 0
     var selectedMake = ""
     var returnThis: String?
+    
+    var specsArray = [String]()
+    var specsArray2 = [String]()
+    var temp1 = ""
+    var temp2 = ""
+    var horsepower = ""
+    var torque = ""
+    var size = ""
+    var cylinder = ""
+    var fuel = ""
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let selectedStyleID = "101353967"
+        
+        let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
+        let urlExtra = "/equipment?fmt=json&api_key=8zc8djuwwteevqe9nea3cejq"
+        let fullURL = URL(string: "\(urlBase)\(selectedStyleID)\(urlExtra)")
+        
+        do {
+            let specs = try Data(contentsOf: fullURL!)
+            let allSpecs = try JSONSerialization.jsonObject(with: specs, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
+            
+            if let aryJSON = allSpecs["equipment"] {
+                for index in 0...aryJSON.count-1 {
+                    
+                    let equipment = aryJSON[index] as! [String : AnyObject]
+                    //print("*****************************************************************************")
+                    temp1 = equipment["name"] as! String
+                    let attr = equipment["attributes"] as! NSArray
+                    let temp3 = attr[0] as! [String : AnyObject]
+                    let temp4 = temp3["name"] as! String
+                    print(temp1)
+                    //print(index)
+                    print(temp4)
+                    
+                    
+                    
+                    if temp1 == "Ege Combined Mpg" {
+                        
+                        specsArray.append((equipment["name"]! as? String)!)
+                        print(specsArray)
+
+                    }
+                }
+            }
+        }
+            
+        catch {
+            
+        }
+    
         //downloadData()
     }
     
