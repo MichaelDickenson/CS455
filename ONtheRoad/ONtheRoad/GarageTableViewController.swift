@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import os.log
 
 class GarageTableViewController: UITableViewController {
     
-    @IBOutlet var dataTable: UITableView!
-
     var garage = [VehicleProfile]()
 
     override func viewDidLoad() {
@@ -28,7 +27,7 @@ class GarageTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,11 +39,17 @@ class GarageTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "vehicleTableCell", for: indexPath) as? GarageTableViewCell
 
         let garages = garage[indexPath.row]
-        let description = garages.make + garages.model + garages.trim + garages.year
+        let description = garages.make + " " + garages.model + " " + garages.trim + " " + garages.year
         
         cell?.vehicleImage.image = garages.photo
         cell?.vehicleName.text = garages.name
         cell?.vehicleDescription.text = description
+        
+        cell?.vehicleImage.layer.cornerRadius = (cell?.vehicleImage.frame.size.height)! / 2
+        cell?.vehicleImage.clipsToBounds = true
+        
+        cell?.vehicleImage.layer.borderWidth = 2.0
+        cell?.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
         
         return cell!
     }
@@ -102,14 +107,37 @@ class GarageTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+            
+        case "AddItem":
+            os_log("Adding a new vehicle.", log: OSLog.default, type: .debug)
+            
+        case "ShowDetail":
+            guard let vehicleDetailViewController = segue.destination as? AddVehicleViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedVehicleCell = sender as? GarageTableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedVehicleCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedVehicle = garage[indexPath.row]
+            vehicleDetailViewController.vehicles = selectedVehicle
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
     }
-    */
 
 }

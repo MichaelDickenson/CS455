@@ -35,6 +35,20 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         vehicleName.delegate = self
         
+        // Set up views if editing an existing vehicle.
+        if let vehicles = vehicles {
+            navigationItem.title = vehicles.name
+            vehicleImage.image = vehicles.photo
+            vehicleName.text = vehicles.name
+            vehicleMake.text = vehicles.make
+            vehicleModel.text = vehicles.model
+            vehicleYear.text = vehicles.year
+            vehicleTrim.text = vehicles.trim
+            
+            // Still have to add all the vehicle specs at the bottom
+
+        }
+        
         setViewColors()
     }
     
