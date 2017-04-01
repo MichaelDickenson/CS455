@@ -352,40 +352,6 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-1180"/>
         </scene>
-        <!--Garage View Controller-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="GarageViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GarageTableViewCell" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6d-5G-D0e">
-                                <rect key="frame" x="16" y="312" width="343" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="hGu-dS-hdO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="h1s-0O-VBp">
-                            <connections>
-                                <segue destination="L8r-sh-Xzt" kind="showDetail" id="mu4-Xs-N67"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1728.8" y="-344.07796101949026"/>
-        </scene>
         <!--Add Vehicle-->
         <scene sceneID="gAn-te-uzQ">
             <objects>
@@ -997,12 +963,104 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="r9c-4L-iay"/>
+                        <segue destination="e9U-Re-O9e" kind="relationship" relationship="rootViewController" id="xv7-QN-T3J"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VyG-hG-26E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="789.60000000000002" y="-344.07796101949026"/>
+        </scene>
+        <!--Garage Table View Controller-->
+        <scene sceneID="UfP-8M-oWG">
+            <objects>
+                <tableViewController id="e9U-Re-O9e" customClass="GarageTableViewController" customModule="ONtheRoad" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="t6Q-zs-CgC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="vehicleTableCell" rowHeight="110" id="xbu-NC-dEL" customClass="GarageTableViewCell" customModule="ONtheRoad" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="110"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xbu-NC-dEL" id="v8b-oM-sjH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="bed-QH-z05">
+                                            <rect key="frame" x="8" y="4" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="0BT-wq-ZAF"/>
+                                                <constraint firstAttribute="width" constant="100" id="Sn8-6Q-O03"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="tGT-pY-23p"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Truck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAd-Zp-dYO">
+                                            <rect key="frame" x="116" y="8" width="251" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="39" id="zDg-Hr-F1J"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdu-bB-G1R">
+                                            <rect key="frame" x="287" y="44" width="80" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="Sge-Pc-AHZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gmc Sierra 1500 2014 SLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfE-bX-FxZ">
+                                            <rect key="frame" x="116" y="80" width="251" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="DAd-Zp-dYO" firstAttribute="trailing" secondItem="v8b-oM-sjH" secondAttribute="trailingMargin" id="3S9-Cu-r0T"/>
+                                        <constraint firstItem="cdu-bB-G1R" firstAttribute="centerY" secondItem="bed-QH-z05" secondAttribute="centerY" id="7pL-WN-Edu"/>
+                                        <constraint firstItem="DAd-Zp-dYO" firstAttribute="leading" secondItem="bed-QH-z05" secondAttribute="trailing" constant="8" symbolic="YES" id="BsA-V7-o2Q"/>
+                                        <constraint firstItem="GfE-bX-FxZ" firstAttribute="leading" secondItem="DAd-Zp-dYO" secondAttribute="leading" id="H8q-oP-CBu"/>
+                                        <constraint firstItem="bed-QH-z05" firstAttribute="leading" secondItem="v8b-oM-sjH" secondAttribute="leadingMargin" id="PDs-n9-eYv"/>
+                                        <constraint firstItem="GfE-bX-FxZ" firstAttribute="trailing" secondItem="cdu-bB-G1R" secondAttribute="trailing" id="R6i-xE-hPL"/>
+                                        <constraint firstItem="bed-QH-z05" firstAttribute="centerY" secondItem="v8b-oM-sjH" secondAttribute="centerY" id="STa-mZ-Oo1"/>
+                                        <constraint firstItem="DAd-Zp-dYO" firstAttribute="trailing" secondItem="cdu-bB-G1R" secondAttribute="trailing" id="VRG-Rm-tTE"/>
+                                        <constraint firstItem="bed-QH-z05" firstAttribute="top" secondItem="v8b-oM-sjH" secondAttribute="topMargin" constant="-4" id="fHa-xe-Hws"/>
+                                        <constraint firstItem="GfE-bX-FxZ" firstAttribute="top" secondItem="cdu-bB-G1R" secondAttribute="bottom" constant="15" id="kZK-W8-jQb"/>
+                                        <constraint firstItem="DAd-Zp-dYO" firstAttribute="top" secondItem="v8b-oM-sjH" secondAttribute="topMargin" id="qTR-Sj-8Fv"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="vehicleDescription" destination="GfE-bX-FxZ" id="ILW-oQ-EBf"/>
+                                    <outlet property="vehicleImage" destination="bed-QH-z05" id="Fse-kE-GYY"/>
+                                    <outlet property="vehicleName" destination="DAd-Zp-dYO" id="Koq-wO-nKM"/>
+                                    <outlet property="vehicleType" destination="cdu-bB-G1R" id="vfl-RA-xhL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="e9U-Re-O9e" id="J5Z-ya-mIf"/>
+                            <outlet property="delegate" destination="e9U-Re-O9e" id="6Dy-I6-cPa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ACv-pC-Lbz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jth-4O-Gc0">
+                            <connections>
+                                <segue destination="L8r-sh-Xzt" kind="showDetail" id="BHL-FV-ygk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dataTable" destination="t6Q-zs-CgC" id="XTu-Lm-14h"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4DO-Nk-PtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="-344.07796101949026"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vmt-DL-7jg">
