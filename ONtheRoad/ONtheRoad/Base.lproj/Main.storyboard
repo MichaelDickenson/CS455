@@ -425,7 +425,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                         <connections>
                                                             <action selector="vehicleNameAction:" destination="F4I-sh-gmx" eventType="editingDidEnd" id="Vbi-6R-Dpd"/>
                                                         </connections>
@@ -485,7 +485,7 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="trimSegue:" destination="F4I-sh-gmx" eventType="editingDidBegin" id="dRd-du-Paa"/>
+                                                            <action selector="trimSegue:" destination="F4I-sh-gmx" eventType="touchDown" id="uwl-v7-VgP"/>
                                                             <segue destination="xsN-Oy-yOe" kind="popoverPresentation" identifier="trimSegue" popoverAnchorView="rXe-uO-pAN" id="rMn-KS-dTc">
                                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                             </segue>
@@ -683,10 +683,12 @@
                     <size key="freeformSize" width="375" height="840"/>
                     <connections>
                         <outlet property="addVehicleScroll" destination="Q56-VX-Xrs" id="csv-yq-HlS"/>
+                        <outlet property="cancelButton" destination="pU5-RP-BXf" id="Q65-Ig-QFh"/>
                         <outlet property="cylinderLabel" destination="AqW-ho-mex" id="2rp-fl-lli"/>
                         <outlet property="efficiencyLabel" destination="xWT-FO-MsV" id="2x3-2i-5Zu"/>
                         <outlet property="gasLabel" destination="OVf-dw-pe2" id="4gB-bq-xII"/>
                         <outlet property="horsepowerLabel" destination="jfI-ee-snr" id="JJL-QG-eNS"/>
+                        <outlet property="saveButton" destination="Hte-Qe-x7j" id="NxG-4d-fcm"/>
                         <outlet property="sizeLabel" destination="5MC-GP-KSu" id="G80-dC-8MU"/>
                         <outlet property="torqueLabel" destination="m4r-1t-y5R" id="ePU-V0-wqi"/>
                         <outlet property="typeSegmentControl" destination="Fwg-oo-xq5" id="UuP-qp-hwM"/>

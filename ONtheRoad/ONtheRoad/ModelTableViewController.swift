@@ -23,7 +23,7 @@ class ModelTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadData()
+        //downloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +73,7 @@ class ModelTableViewController: UITableViewController {
         if selectedModel == "Label" {
             selectedModel = modelNames[0]
         }
-        returnThis = selectedModel
+        returnThis = "Pilot"//selectedModel
         //vehicles = VehicleProfile(name: "", make: selectedMake, model: selectedModel, year: "", trim: "", type: "")
     }
     
@@ -90,7 +90,7 @@ class ModelTableViewController: UITableViewController {
         selectedMake = "honda"//VehicleProfileData.vehicleData[0].make
 
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
-        let urlExtra = "/models?fmt=json&state=new&api_key=b3aa4xkn4mc964zcpnzm3pmv"
+        let urlExtra = "/models?fmt=json&state=new&api_key=gjppwybke2wgy6ndafz23cyr"
         let fullURL = URL(string: "\(urlBase)\(selectedMake)\(urlExtra)")
         
         do {

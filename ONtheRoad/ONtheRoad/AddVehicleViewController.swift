@@ -27,11 +27,33 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var torqueLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var addVehicleScroll: UIScrollView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        vehicleName.delegate = self
+        
         setViewColors()
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        navigationItem.title = textField.text
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton.isEnabled = false
     }
     
     // MARK: Actions
@@ -42,11 +64,22 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     @IBAction func vehicleNameAction(_ sender: UITextField) {
-        if vehicleName.text! != "" {
-            vehicleName.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
-            vehicleName.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-            vehicleName.layer.borderWidth = 1.0
-            vehicleName.layer.cornerRadius = 5.0
+        if vehicleName.text! == "" {
+            vehicleMake.isUserInteractionEnabled = false
+            vehicleModel.isUserInteractionEnabled = false
+            vehicleYear.isUserInteractionEnabled = false
+            vehicleTrim.isUserInteractionEnabled = false
+        } else {
+            vehicleMake.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleMake.layer.borderWidth = 1.0
+            vehicleMake.layer.cornerRadius = 5.0
+            
+            vehicleMake.isUserInteractionEnabled = true
+            vehicleModel.isUserInteractionEnabled = false
+            vehicleYear.isUserInteractionEnabled = false
+            vehicleTrim.isUserInteractionEnabled = false
         }
     }
     
@@ -67,7 +100,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     @IBAction func trimSegue(_ sender: UITextField) {
-        print("Hello")
         self.vehicleTrim.isUserInteractionEnabled = false
         self.performSegue(withIdentifier: "trimSegue", sender: nil)
     }
@@ -79,12 +111,19 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].make = returnedMake
 
-            if vehicleMake.text! != "Label" {
-                vehicleMake.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
-                vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleMake.layer.borderWidth = 1.0
-                vehicleMake.layer.cornerRadius = 5.0
+            if vehicleMake.text! != "Label" && vehicleMake.text! != ""{
+                vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleModel.layer.borderWidth = 1.0
+                vehicleModel.layer.cornerRadius = 5.0
+
+                vehicleMake.isUserInteractionEnabled = true
+                vehicleModel.isUserInteractionEnabled = true
+                vehicleYear.isUserInteractionEnabled = false
+                vehicleTrim.isUserInteractionEnabled = false
+            } else {
+                vehicleMake.text = ""
             }
         }
         
@@ -95,11 +134,18 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             //VehicleProfileData.vehicleData[0].model = returnedModel
             
             if vehicleModel.text! != "Label" {
-                vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
-                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleModel.layer.borderWidth = 1.0
-                vehicleModel.layer.cornerRadius = 5.0
+                vehicleYear.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleYear.layer.borderWidth = 1.0
+                vehicleYear.layer.cornerRadius = 5.0
+                
+                vehicleMake.isUserInteractionEnabled = true
+                vehicleModel.isUserInteractionEnabled = true
+                vehicleYear.isUserInteractionEnabled = true
+                vehicleTrim.isUserInteractionEnabled = false
+            } else {
+                vehicleModel.text = ""
             }
         }
         
@@ -109,12 +155,19 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].year = returnedYear
             
-            if vehicleYear.text! != "Label" {
-                vehicleYear.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
-                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleYear.layer.borderWidth = 1.0
-                vehicleYear.layer.cornerRadius = 5.0
+            if vehicleModel.text! != "Label" {
+                vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+                vehicleTrim.layer.borderWidth = 1.0
+                vehicleTrim.layer.cornerRadius = 5.0
+                
+                vehicleMake.isUserInteractionEnabled = true
+                vehicleModel.isUserInteractionEnabled = true
+                vehicleYear.isUserInteractionEnabled = true
+                vehicleTrim.isUserInteractionEnabled = true
+            } else {
+                vehicleYear.text = ""
             }
         }
         
@@ -124,16 +177,25 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             VehicleProfileData.vehicleData.append(vehicles!)
             //VehicleProfileData.vehicleData[0].trim = returnedTrim
             
-            if vehicleTrim.text! != "Label" {
-                vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
-                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
-                vehicleTrim.layer.borderWidth = 1.0
-                vehicleTrim.layer.cornerRadius = 5.0
+            if vehicleTrim.text! == "Label" || vehicleTrim.text! == "" {
+                vehicleTrim.text = ""
             }
         }
         
-        getVehicleSpecifications()
+        if let sourceViewController = sender.source as? TrimTableViewController, let returnedID = sourceViewController.returnThisToo {
+            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: vehicleTrim.text!, trim: vehicleTrim.text!, type: "", id: returnedID)
+            VehicleProfileData.vehicleData.append(vehicles!)
+            //VehicleProfileData.vehicleData[0].trim = returnedTrim
+            
+            if returnedID == "" {
+                vehicleMake.text = ""
+                vehicleModel.text = ""
+                vehicleYear.text = ""
+                vehicleTrim.text = ""
+            } else {
+                getVehicleSpecifications(styleID: returnedID)
+            }
+        }
     }
     
     //MARK: Navigation
@@ -176,7 +238,26 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         // Border for image
         self.vehicleImage.layer.borderWidth = 2.0
-        self.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor        
+        self.vehicleImage.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+        
+        // Vehicle Name TextField
+        vehicleName.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+        vehicleName.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+        vehicleName.layer.borderWidth = 1.0
+        vehicleName.layer.cornerRadius = 5.0
+        
+        // Do not allow to enter info without previous field completed
+        vehicleMake.isUserInteractionEnabled = false
+        vehicleModel.isUserInteractionEnabled = false
+        vehicleYear.isUserInteractionEnabled = false
+        vehicleTrim.isUserInteractionEnabled = false
+        vehicleTrim.allowsEditingTextAttributes = false
+    }
+    
+    func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = vehicleName.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
     
     func openActionSheet() {
@@ -241,9 +322,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func getVehicleSpecifications() {
+    func getVehicleSpecifications(styleID: String) {
         
-        let selectedStyleID = "101353967"
+        let selectedStyleID = styleID
+        var valueKM: Float = 0.0
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
         let urlExtra = "/equipment?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
@@ -254,7 +336,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             let allSpecs = try JSONSerialization.jsonObject(with: specs, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
             
             if let aryJSON = allSpecs["equipment"] {
-                for index in 0...34 {
+                for index in 0...aryJSON.count-1 {
                     
                     let equipment = aryJSON[index] as! [String : AnyObject]
                     let sectionName = equipment["name"] as! String
@@ -263,19 +345,31 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         
                         let attr = equipment["attributes"] as! NSArray
                         var aryValues = attr[6] as! [String : AnyObject]
-                        var name = aryValues["name"] as! String
+                        //var name = aryValues["name"] as! String
                         var value = aryValues["value"] as! String
                         
-                        print(name)
-                        print(value)
-                        efficiencyLabel.text = value
+                        // Convert String to Int and convert mpg to km/L
+                        if let valueNumber = Float(value) {
+                            valueKM = 235 / valueNumber
+                            print("This is 21 mpg in L/100km")
+                            print(valueKM)
+                        }
+                        
+                        let kmLabel = "L/100km"
+                        let finalEfficiency = "\(valueKM)\(kmLabel)"
+                        efficiencyLabel.text = finalEfficiency
                         
                         aryValues = attr[7] as! [String : AnyObject]
-                        name = aryValues["name"] as! String
+                        //name = aryValues["name"] as! String
                         value = aryValues["value"] as! String
                         
-                        //print(name)
-                        //print(value)
+                        // Convert String to Int and convert mpg to km/L
+                        if let accelerationTime = Float(value) {
+                            let maxAccelerationTime = (96.56 * 0.278) / accelerationTime
+                            print("This is the max acceleration time using 7.8s")
+                            print(maxAccelerationTime)
+                        }
+                        
                     }
                     
                     if sectionName == "Engine" {

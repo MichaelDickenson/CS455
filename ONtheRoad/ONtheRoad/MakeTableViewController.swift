@@ -30,7 +30,7 @@ class MakeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        downloadData()
+        //downloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ class MakeTableViewController: UITableViewController {
         if selectedMake == "Label" {
             selectedMake = makeNames[0]
         }
-        returnThis = selectedMake
+        returnThis = "Honda"//selectedMake
         //vehicles = VehicleProfile(name: "", make: selectedMake, model: "", year: "", trim: "", type: "")
     }
     
@@ -89,7 +89,7 @@ class MakeTableViewController: UITableViewController {
     
     func downloadData() {
 
-        let url = URL(string:"https://api.edmunds.com/api/vehicle/v2/makes?state=new&year=2017&view=basic&fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv")
+        let url = URL(string:"https://api.edmunds.com/api/vehicle/v2/makes?state=new&year=2017&view=basic&fmt=json&api_key=gjppwybke2wgy6ndafz23cyr")
         
         do {
             let allMakesNames = try Data(contentsOf: url!)

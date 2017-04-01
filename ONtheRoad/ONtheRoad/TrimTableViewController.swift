@@ -12,20 +12,23 @@ import os.log
 class TrimTableViewController: UITableViewController {
 
     var trimNames = [String]()
+    var styleID = [Int]()
     var trimNumber: Int = 0
     var selectedIndex = 0
     var selectedMake = ""
     var selectedModel = ""
     var selectedYear = ""
     var selectedTrim = ""
+    var selectedID = ""
     var returnThis: String? = ""
+    var returnThisToo: String? = ""
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadData()
+        //downloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,11 +52,12 @@ class TrimTableViewController: UITableViewController {
         if(indexPath.row == selectedIndex) {
             cell?.accessoryType = .checkmark;
             selectedTrim = (cell?.trimLabel.text)!
+            selectedID = "\(styleID[indexPath.row])"
         } else {
             cell?.accessoryType = .none;
         }
-        
-        cell?.trimLabel.text = self.trimNames[indexPath.row]
+
+        cell?.trimLabel.text = "\(self.trimNames[indexPath.row])"
         return cell!
     }
     
@@ -75,7 +79,10 @@ class TrimTableViewController: UITableViewController {
         if selectedTrim == "Label" {
             selectedTrim = trimNames[0]
         }
-        returnThis = selectedTrim
+        returnThis = "EX-L"//selectedTrim
+        returnThisToo = "101172631"//selectedID
+        print(selectedTrim)
+        print(selectedID)
     }
     
     //MARK: Actions
@@ -93,7 +100,7 @@ class TrimTableViewController: UITableViewController {
         selectedYear = "2010"//VehicleProfileData.vehicleData[2].year
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
-        let urlExtra = "/styles?fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv"
+        let urlExtra = "/styles?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr"
         let fullURL = URL(string: "\(urlBase)\(selectedMake)\("/")\(selectedModel)\("/")\(selectedYear)\(urlExtra)")
         
         do {
@@ -103,7 +110,10 @@ class TrimTableViewController: UITableViewController {
             if let aryJSON = allTrims["styles"] {
                 for index in 0...aryJSON.count-1 {
                     let trims = aryJSON[index] as! [String : AnyObject]
+                    
                     trimNames.append((trims["trim"]! as? String)!)
+                    styleID.append((trims["id"]! as? Int)!)
+                    
                 }
             }
         }
