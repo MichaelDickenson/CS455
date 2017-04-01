@@ -54,6 +54,15 @@ class NewRunViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     var vertDescent = 0.0
     var previousAlt = 0.0
     
+//Michael created variables
+    //Going to use the outlet for climb to show accel.
+    var maxAccel = 4.6 // Using a mazda3 MPS. 0-100 kph in 6.1s. the 0-100 converts to 27.8m/s. We then get 27.8/6.1 for an average acceleration of 4.6m/s^2.
+    var accel = 0.0 //Variable for accel, (delta V)/(delta time). (distance/time)/time.
+    //Going to use the outlet for descent for consumption
+    var carConsumptiion = 24.0 //Cars documented consumption
+    var trueConsumption = 0.0 //Cars current consumption
+    
+    
     var locationManager: CLLocationManager!
     
     //This will be needed to 
@@ -73,8 +82,8 @@ class NewRunViewController: UIViewController,MKMapViewDelegate,CLLocationManager
     @IBOutlet weak var stopButton: UIButton!
     
 //I'm leaving these climb/descent IBOutlets uncommented as the app crashes when they are commented, commenting everything that updates them
-    @IBOutlet weak var climbLabel: UILabel!
-    @IBOutlet weak var descentLabel: UILabel!
+    @IBOutlet weak var climbLabel: UILabel! //Hijacking this outlet plug to show Accel
+    @IBOutlet weak var descentLabel: UILabel! //Hijacking this outlet plug to show consumption
     @IBOutlet weak var nextBadgeImageView: UIImageView!
     @IBOutlet weak var nextBadgeLabel: UILabel!
     
@@ -177,6 +186,10 @@ class NewRunViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         vertDescent = 0.0
         instantPace = 0.0
         previousAlt = -1000
+        
+        //Adding in the varaible for accel
+        accel = 0.0
+        
         locations.removeAll(keepingCapacity: false)
         timer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
@@ -243,6 +256,9 @@ class NewRunViewController: UIViewController,MKMapViewDelegate,CLLocationManager
         //Displaying current speed
         paceLabel.text = "Current speed: "+String((instantPace*3.6*10).rounded()/10)+" km/h"//"Pace: "+String((distance/seconds*3.6*10).rounded()/10)+" km/h"
         
+        //Displaying the accel
+        climbLabel.text = "Accel: "+String((accel*10).rounded()/10)+" m/s^2"
+        
 //        climbLabel.text = "Total climb: "+String((vertClimb*10).rounded()/10)+" m"
 //        descentLabel.text = "Total descent: "+String((vertDescent*10).rounded()/10)+" m"
         
@@ -300,6 +316,10 @@ class NewRunViewController: UIViewController,MKMapViewDelegate,CLLocationManager
                     
                     //Recording current speed
                     instantPace = location.distance(from: self.locations.last!)/(location.timestamp.timeIntervalSince(self.locations.last!.timestamp))
+                    
+                    //Recording the accel
+//Forcing this guy into absoulte value so we can play with accell properly
+                     accel = instantPace - (location.distance(from: self.locations.last!)/(location.timestamp.timeIntervalSince(self.locations.last!.timestamp))/(location.timestamp.timeIntervalSince(self.locations.last!.timestamp)))
 
                     //Updating the displayed region
                     let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500)
