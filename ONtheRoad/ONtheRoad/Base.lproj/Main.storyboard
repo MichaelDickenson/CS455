@@ -638,9 +638,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Vehicle" id="c9m-Il-39x">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pU5-RP-BXf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="J8r-pY-QIr">
                             <connections>
-                                <action selector="cancel:" destination="F4I-sh-gmx" id="t1N-qe-olZ"/>
+                                <action selector="cancel:" destination="F4I-sh-gmx" id="JOh-64-QXg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Hte-Qe-x7j"/>
@@ -649,7 +649,7 @@
                     <size key="freeformSize" width="375" height="840"/>
                     <connections>
                         <outlet property="addVehicleScroll" destination="Q56-VX-Xrs" id="csv-yq-HlS"/>
-                        <outlet property="cancelButton" destination="pU5-RP-BXf" id="Q65-Ig-QFh"/>
+                        <outlet property="cancelButton" destination="J8r-pY-QIr" id="n42-mG-hYj"/>
                         <outlet property="cylinderLabel" destination="AqW-ho-mex" id="2rp-fl-lli"/>
                         <outlet property="efficiencyLabel" destination="xWT-FO-MsV" id="2x3-2i-5Zu"/>
                         <outlet property="gasLabel" destination="OVf-dw-pe2" id="4gB-bq-xII"/>
@@ -1058,7 +1058,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Garage" id="ACv-pC-Lbz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="y7I-WS-Zl6"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jth-4O-Gc0">
                             <connections>
                                 <segue destination="L8r-sh-Xzt" kind="show" identifier="AddItem" id="815-fK-oU0"/>

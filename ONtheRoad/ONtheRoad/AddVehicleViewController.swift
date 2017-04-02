@@ -108,6 +108,13 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             vehicleYear.isUserInteractionEnabled = false
             vehicleTrim.isUserInteractionEnabled = false
         }
+        
+        if vehicleMake.text != "" && vehicleModel.text != "" && vehicleYear.text != "" && vehicleTrim.text != "" {
+            vehicleMake.isUserInteractionEnabled = false
+            vehicleModel.isUserInteractionEnabled = false
+            vehicleYear.isUserInteractionEnabled = false
+            vehicleTrim.isUserInteractionEnabled = false
+        }
     }
     
     @IBAction func makeSegueAction(_ sender: UITextField) {
@@ -136,7 +143,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             vehicleMake.text = returnedMake
             tempString = returnedMake.replacingOccurrences(of: " ", with: "")
 
-            if vehicleMake.text! != "Label" && vehicleMake.text! != ""{
+            if vehicleMake.text! != "Label" && vehicleMake.text! != "" {
                 vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
                 vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
                 vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
@@ -217,7 +224,18 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     //MARK: Navigation
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        let isPresentingInAddVehicleMode = presentingViewController is UITabBarController
+        if isPresentingInAddVehicleMode {
+            
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The AddVehicleNavigation is not inside a navigation controller.")
+        }
     }
     
     // MARK: UIImagePickerControllerDelegate
