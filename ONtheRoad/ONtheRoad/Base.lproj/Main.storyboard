@@ -1058,6 +1058,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Garage" id="ACv-pC-Lbz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="y7I-WS-Zl6"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jth-4O-Gc0">
                             <connections>
                                 <segue destination="L8r-sh-Xzt" kind="show" identifier="AddItem" id="815-fK-oU0"/>

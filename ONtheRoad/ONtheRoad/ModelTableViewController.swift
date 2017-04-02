@@ -17,13 +17,14 @@ class ModelTableViewController: UITableViewController {
     var selectedMake = ""
     var selectedModel = ""
     var returnThis: String? = ""
+    var receivedString = ""
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //downloadData()
+        downloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,8 +74,7 @@ class ModelTableViewController: UITableViewController {
         if selectedModel == "Label" {
             selectedModel = modelNames[0]
         }
-        returnThis = "Pilot"//selectedModel
-        //vehicles = VehicleProfile(name: "", make: selectedMake, model: selectedModel, year: "", trim: "", type: "")
+        returnThis = selectedModel
     }
     
     //MARK: Actions
@@ -87,7 +87,7 @@ class ModelTableViewController: UITableViewController {
         
         //let url = URL(string: "https://api.edmunds.com/api/vehicle/v2/acura/models?fmt=json&state=new&api_key=b3aa4xkn4mc964zcpnzm3pmv")
         
-        selectedMake = "honda"//VehicleProfileData.vehicleData[0].make
+        selectedMake = receivedString
 
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
         let urlExtra = "/models?fmt=json&state=new&api_key=gjppwybke2wgy6ndafz23cyr"

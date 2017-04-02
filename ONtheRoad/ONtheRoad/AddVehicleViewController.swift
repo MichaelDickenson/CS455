@@ -12,6 +12,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
 
     //var vehiclesList = [VehicleProfile]()
     var vehicles: VehicleProfile?
+    var tempString = ""
     
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var vehicleName: UITextField!
@@ -70,6 +71,18 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         saveButton.isEnabled = false
     }
     
+    // MARK: Segue calls
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "modelSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! ModelTableViewController
+
+            controller.receivedString = tempString
+        }
+    }
+    
     // MARK: Actions
     
     @IBAction func imageGestureRecognizer(_ sender: UITapGestureRecognizer) {
@@ -121,9 +134,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func unwindToAddVehicle(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? MakeTableViewController, let returnedMake = sourceViewController.returnThis {
             vehicleMake.text = returnedMake
-            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: returnedMake, model: "", year: "", trim: "", type: "", id: "")
-            VehicleProfileData.vehicleData.append(vehicles!)
-            //VehicleProfileData.vehicleData[0].make = returnedMake
+            tempString = returnedMake.replacingOccurrences(of: " ", with: "")
 
             if vehicleMake.text! != "Label" && vehicleMake.text! != ""{
                 vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
@@ -143,9 +154,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? ModelTableViewController, let returnedModel = sourceViewController.returnThis {
             vehicleModel.text = returnedModel
-            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: vehicleMake.text!, model: returnedModel, year: "", trim: "", type: "", id: "")
-            VehicleProfileData.vehicleData.append(vehicles!)
-            //VehicleProfileData.vehicleData[0].model = returnedModel
+            tempString = returnedModel.replacingOccurrences(of: " ", with: "")
+
             
             if vehicleModel.text! != "Label" {
                 vehicleYear.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
@@ -165,9 +175,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? YearTableViewController, let returnedYear = sourceViewController.returnThis {
             vehicleYear.text = returnedYear
-            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: returnedYear, trim: "", type: "", id: "")
-            VehicleProfileData.vehicleData.append(vehicles!)
-            //VehicleProfileData.vehicleData[0].year = returnedYear
             
             if vehicleModel.text! != "Label" {
                 vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
@@ -187,9 +194,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? TrimTableViewController, let returnedTrim = sourceViewController.returnThis {
             vehicleTrim.text = returnedTrim
-            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: vehicleTrim.text!, trim: returnedTrim, type: "", id: "")
-            VehicleProfileData.vehicleData.append(vehicles!)
-            //VehicleProfileData.vehicleData[0].trim = returnedTrim
+            tempString = returnedTrim.replacingOccurrences(of: " ", with: "")
             
             if vehicleTrim.text! == "Label" || vehicleTrim.text! == "" {
                 vehicleTrim.text = ""
@@ -197,9 +202,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         }
         
         if let sourceViewController = sender.source as? TrimTableViewController, let returnedID = sourceViewController.returnThisToo {
-            vehicles = VehicleProfile(photo: vehicleImage.image!, name: vehicleName.text!, make: vehicleMake.text!, model: vehicleModel.text!, year: vehicleTrim.text!, trim: vehicleTrim.text!, type: "", id: returnedID)
-            VehicleProfileData.vehicleData.append(vehicles!)
-            //VehicleProfileData.vehicleData[0].trim = returnedTrim
             
             if returnedID == "" {
                 vehicleMake.text = ""
@@ -259,6 +261,42 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         vehicleName.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
         vehicleName.layer.borderWidth = 1.0
         vehicleName.layer.cornerRadius = 5.0
+        
+        if vehicleMake.text != "" {
+            vehicleMake.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleMake.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleMake.layer.borderWidth = 1.0
+            vehicleMake.layer.cornerRadius = 5.0
+            
+            vehicleMake.isUserInteractionEnabled = false
+        }
+        
+        if vehicleModel.text != "" {
+            vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleModel.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleModel.layer.borderWidth = 1.0
+            vehicleModel.layer.cornerRadius = 5.0
+            
+            vehicleModel.isUserInteractionEnabled = false
+        }
+        
+        if vehicleYear.text != "" {
+            vehicleYear.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleYear.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleYear.layer.borderWidth = 1.0
+            vehicleYear.layer.cornerRadius = 5.0
+            
+            vehicleYear.isUserInteractionEnabled = false
+        }
+        
+        if vehicleTrim.text != "" {
+            vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
+            vehicleTrim.layer.borderColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0).cgColor
+            vehicleTrim.layer.borderWidth = 1.0
+            vehicleTrim.layer.cornerRadius = 5.0
+            
+            vehicleTrim.isUserInteractionEnabled = false
+        }
         
         // Do not allow to enter info without previous field completed
         vehicleMake.isUserInteractionEnabled = false
@@ -386,7 +424,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         
                     }
                     
-                    if sectionName == "Engine" {
+                    if sectionName == "Engine" && cylinderLabel.text! == "" {
                         print(index)
                         let cylinder = equipment["cylinder"] as! Int
                         let size = equipment["size"] as! Float
