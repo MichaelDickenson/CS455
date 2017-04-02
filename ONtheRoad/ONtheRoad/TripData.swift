@@ -1,70 +1,70 @@
-//
-//  TripData.swift
-//  ONtheRoad
-//
-//  Created by Michael Dickenson on 2017-04-01.
-//  Copyright © 2017 Santiago Félix Cárdenas. All rights reserved.
-//
-
 import UIKit
 import CoreLocation
 
-//Commented out just for you, Santiago
-//If you uncomment, it will probably not compile
-//Please enjoy your wonderful life.
-
-/*
-class TripData: CLLocationManagerDelegate{
+class TripData: NSObject, CLLocationManagerDelegate{
     
     //Mandatory Variables
     var startTime: Date?
-    var vehicleNumber: Int
+    var vehicleID: Int
     
-    
-    //Optional User Input Variables
+    //Optional Input Variables
     var name: String?
     var odometerStart: Int?
+    var vehicleMaxAccel: Double?
     
     //End of Trip Variables
     var odometerEnd: Int?
     var endTime: Date?
-    var tripLength: Int?
-    var tripDistance: Int?
+    var tripLength: Double?
+    var tripDistance: Double?
     
     var tripLocationData = [Location]()
     
-    init?(vehicleNumber: Int, name: String?, odometerStart: Int?){
+    init?(vehicleID: Int, name: String?, odometerStart: Int?, vehicleMaxAccel: Double?){
         self.startTime = Date.init()
-        self.vehicleNumber = vehicleNumber
+        self.vehicleID = vehicleID
         self.name = name
         self.odometerStart = odometerStart
+        self.vehicleMaxAccel = vehicleMaxAccel
     }
-
+    
     var locationManager: CLLocationManager!
     lazy var locations = [CLLocation]()
     
-//func startLocationUpdates()
+    //func startLocationUpdates()
     func startTrip(){
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
-    
+        
     }
     
+    func endTrip(){
+        locationManager.stopUpdatingLocation()
+        self.endTime = Date.init()
+        self.tripLength = self.endTime?.timeIntervalSince(self.startTime!)
+        self.odometerEnd = self.odometerStart! + Int(self.tripDistance!)
+    }
+    
+    //locationManager() is called everytime the GPS updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //for each location the GPS returns, update tripLocationData with a new Location
         for location in locations{
+            
+            //Bananas are delicious
             print ("BANANAS")
             
-            if self.locations.count < 0 {
+            //If locations is not empty, calculate all
+            if self.locations.count > 0 {
                 let tempLocation = Location(timeStamp: location.timestamp, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 
                 tempLocation?.instSpeed = location.distance(from: self.locations.last!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
                 tempLocation?.distanceSinceLast = location.distance(from:self.locations.last!)
                 tempLocation?.instAcceleration = ((tempLocation?.instSpeed)! - (tripLocationData.last?.instSpeed)!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
-//eff ratio                tempLocation?.efficiencyRatio = vehicleData
                 
-                //UNFINISHED STUFF GOES HERE
+                self.tripDistance = tripDistance! + (tempLocation?.distanceSinceLast)!
                 
-                
+                //Efficiency Ratio
+                tempLocation?.efficiencyRatio = (tempLocation?.instAcceleration)!/self.vehicleMaxAccel!
                 
                 tripLocationData.append(tempLocation!)
             }
@@ -90,4 +90,4 @@ class Location {
         self.longitude = longitude
     }
     
-}*/
+}
