@@ -49,6 +49,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             vehicleModel.text = vehicles.model
             vehicleYear.text = vehicles.year
             vehicleTrim.text = vehicles.trim
+            
+            let formattedEfficiency = String(format: "%.2f", vehicles.efficiency)
+            efficiencyLabel.text = formattedEfficiency
+            
             cylinderLabel.text = vehicles.cylinder
             sizeLabel.text = vehicles.size
             horsepowerLabel.text = vehicles.horsepower
@@ -56,7 +60,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             gasLabel.text = vehicles.gas
         }
         
-        setViewColors()
+        setupView()
     }
     
     // MARK: UITextFieldDelegate
@@ -68,7 +72,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        updateSaveButtonState()
         navigationItem.title = textField.text
     }
     
@@ -80,6 +83,30 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // MARK: Segue for passing values for API calls and save button for adding vehicle
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "modelSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! ModelTableViewController
+            controller.receivedMake = tempMake
+        }
+        
+        if segue.identifier == "yearSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! YearTableViewController
+            
+            controller.receivedMake = tempMake
+            controller.receivedModel = tempModel
+        }
+        
+        if segue.identifier == "trimSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! TrimTableViewController
+            
+            controller.receivedMake = tempMake
+            controller.receivedModel = tempModel
+            controller.receivedYear = tempYear
+        }
+        
         super.prepare(for: segue, sender: sender)
         
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
@@ -101,8 +128,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             type = "Work"
         }
         
-        let maxAccel = vehicles?.maxAcceleration
-        let efficiency = vehicles?.efficiency
+        let maxAccel = maxAccelerationTime
+        let efficiency = valueKM
         
         let cylinder = cylinderLabel.text
         let size = sizeLabel.text
@@ -111,31 +138,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let gas = gasLabel.text
         
         // Values to be passed ****************************************************************************
-        vehicles = VehicleProfile(photo: photo!, name: name!, make: make!, model: model!, year: year!, trim: trim!, type: type, id: "", maxAcceleration: maxAccel!, efficiency: efficiency!, cylinder: cylinder!, size: size!, horsepower: horsepower!, torque: torque!, gas: gas!)
-        
-        if segue.identifier == "modelSegue" {
-            let nav = segue.destination as! UINavigationController
-            let controller = nav.topViewController as! ModelTableViewController
-
-            controller.receivedMake = tempMake
-        }
-        
-        if segue.identifier == "yearSegue" {
-            let nav = segue.destination as! UINavigationController
-            let controller = nav.topViewController as! YearTableViewController
-            
-            controller.receivedMake = tempMake
-            controller.receivedModel = tempModel
-        }
-        
-        if segue.identifier == "trimSegue" {
-            let nav = segue.destination as! UINavigationController
-            let controller = nav.topViewController as! TrimTableViewController
-            
-            controller.receivedMake = tempMake
-            controller.receivedModel = tempModel
-            controller.receivedYear = tempYear
-        }
+        vehicles = VehicleProfile(photo: photo!, name: name!, make: make!, model: model!, year: year!, trim: trim!, type: type, id: "", maxAcceleration: maxAccel, efficiency: efficiency, cylinder: cylinder!, size: size!, horsepower: horsepower!, torque: torque!, gas: gas!)
     }
     
     // MARK: Actions
@@ -317,7 +320,9 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     // MARK: Functions
     
-    func setViewColors() {
+    func setupView() {
+        saveButton.isEnabled = false
+        
         // Disable scroll view delay of touch 
         addVehicleScroll.delaysContentTouches = false
         
@@ -380,9 +385,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     func updateSaveButtonState() {
-        // Disable the Save button if the text field is empty.
-        let text = vehicleName.text ?? ""
-        saveButton.isEnabled = !text.isEmpty
+        saveButton.isEnabled = true
     }
     
     func openActionSheet() {
@@ -452,7 +455,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let selectedStyleID = styleID
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
-        let urlExtra = "/equipment?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
+        let urlExtra = "/equipment?fmt=json&api_key=8zc8djuwwteevqe9nea3cejq" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
         let fullURL = URL(string: "\(urlBase)\(selectedStyleID)\(urlExtra)")
         
         do {
@@ -475,13 +478,17 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         // Convert String to Int and convert mpg to km/L
                         if let valueNumber = Float(value) {
                             valueKM = 235 / valueNumber
-                            print("This is 21 mpg in L/100km")
+                            print(valueNumber)
+                            print(value)
+                            print("This L/100km")
                             print(valueKM)
                         }
                         
                         let kmLabel = "L/100km"
                         let finalEfficiency = "\(valueKM)\(kmLabel)"
-                        efficiencyLabel.text = finalEfficiency
+                        let formattedEfficiency = String(format: "%.2f", finalEfficiency)
+
+                        efficiencyLabel.text = formattedEfficiency
                         
                         aryValues = attr[7] as! [String : AnyObject]
                         //name = aryValues["name"] as! String
@@ -490,9 +497,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         // Convert String to Int and convert mpg to km/L
                         if let accelerationTime = Float(value) {
                             maxAccelerationTime = (96.56 * 0.278) / accelerationTime
-                            print("This is the max acceleration time using 7.8s")
+                            print("This is the max acceleration time")
                             print(maxAccelerationTime)
                         }
+                        updateSaveButtonState()
                     }
                     
                     if sectionName == "Engine" && cylinderLabel.text! == "" {
@@ -507,6 +515,12 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         horsepowerLabel.text = "\(horsepower)"
                         torqueLabel.text = "\(torque)"
                         gasLabel.text = gas
+                        
+                        print(cylinder)
+                        print(size)
+                        print(horsepower)
+                        print(torque)
+                        print(gas)
                         
                     }
                 }

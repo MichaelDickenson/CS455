@@ -92,7 +92,7 @@ class TrimTableViewController: UITableViewController {
         //let url = URL(string: "https://api.edmunds.com/api/vehicle/v2/honda/pilot/2010/styles?fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv")
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
-        let urlExtra = "/styles?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr"
+        let urlExtra = "/styles?fmt=json&api_key=8zc8djuwwteevqe9nea3cejq"
         let fullURL = URL(string: "\(urlBase)\(receivedMake)\("/")\(receivedModel)\("/")\(receivedYear)\(urlExtra)")
         
         do {

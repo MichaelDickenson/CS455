@@ -643,7 +643,11 @@
                                 <action selector="cancel:" destination="F4I-sh-gmx" id="JOh-64-QXg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Hte-Qe-x7j"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Hte-Qe-x7j">
+                            <connections>
+                                <segue destination="eFv-SN-aj0" kind="unwind" unwindAction="unwindToGarageListWithSender:" id="uQt-yW-fs4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="840"/>
@@ -667,6 +671,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGk-nN-U0C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eFv-SN-aj0" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="Zru-IZ-DW0">
                     <connections>
                         <action selector="imageGestureRecognizer:" destination="F4I-sh-gmx" id="845-HW-ASD"/>

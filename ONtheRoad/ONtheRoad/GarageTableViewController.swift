@@ -56,6 +56,19 @@ class GarageTableViewController: UITableViewController {
         return cell!
     }
     
+    // MARK: Actions
+    
+    @IBAction func unwindToGarageList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? AddVehicleViewController, let vehicle = sourceViewController.vehicles {
+            
+            // Add new vehicle
+            let newIndexPath = IndexPath(row: garage.count, section: 0)
+            
+            garage.append(vehicle)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     // MARK: Private Methods
     
     private func loadSampleData() {
