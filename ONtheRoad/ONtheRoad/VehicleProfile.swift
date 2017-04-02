@@ -8,21 +8,25 @@
 
 import UIKit
 
-struct VehicleProfile {
+class VehicleProfile {
     
     //MARK: Properties
     var photo: UIImage?
-    var name: String? = ""
-    var make: String = ""
-    var model: String = ""
-    var year: String = ""
-    var trim: String = ""
-    var type: String = ""
-    var id: String = ""
+    var name: String
+    var make: String?
+    var model: String?
+    var year: String?
+    var trim: String?
+    var type: String?
+    var id: String?
+    var maxAccel: Float?
     
     //MARK: Initialization
-    
-    init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String) {
+    init?(photo: UIImage?, name: String, make: String?, model: String?, year: String?, trim: String?, type: String?, id: String?) {
+        
+        if name.isEmpty{
+            return nil
+        }
         
         // Initialize stored properties.
         self.photo = photo

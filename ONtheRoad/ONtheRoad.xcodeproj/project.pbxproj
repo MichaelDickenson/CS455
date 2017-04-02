@@ -19,8 +19,6 @@
 		0646DEE51E90311A00951E39 /* GarageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0646DEE41E90311A00951E39 /* GarageTableViewCell.swift */; };
 		0646DEE71E9036CA00951E39 /* GarageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0646DEE61E9036CA00951E39 /* GarageTableViewController.swift */; };
 		066DACC11E8A41B6002B62E8 /* GraphTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066DACC01E8A41B6002B62E8 /* GraphTwoViewController.swift */; };
-		066DACC31E8A41EE002B62E8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; };
-		066DACC51E8A4211002B62E8 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		066DACC81E8A4964002B62E8 /* GraphThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066DACC71E8A4964002B62E8 /* GraphThreeViewController.swift */; };
 		0696516E1E8C294A00349A49 /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0696516D1E8C294A00349A49 /* AddVehicleViewController.swift */; };
 		069B33921E8CE5B100760F3A /* VehicleProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B33911E8CE5B100760F3A /* VehicleProfile.swift */; };
@@ -36,6 +34,10 @@
 		06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */; };
 		06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */; };
 		B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */; };
+		B115BA6B1E90B2FC0027803C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B115BA6A1E90B2FC0027803C /* Charts.framework */; };
+		B115BA6C1E90B3020027803C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B115BA6A1E90B2FC0027803C /* Charts.framework */; };
+		B115BA6D1E90B3020027803C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B115BA6A1E90B2FC0027803C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B115BA701E90B6E50027803C /* TripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B115BA6F1E90B6E50027803C /* TripData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		066DACC61E8A4212002B62E8 /* Embed Frameworks */ = {
+		B115BA6E1E90B3020027803C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				066DACC51E8A4211002B62E8 /* Charts.framework in Embed Frameworks */,
+				B115BA6D1E90B3020027803C /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +98,8 @@
 		06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphOneViewController.swift; sourceTree = "<group>"; };
 		2654D2751129C5C6F9726DBE /* Pods-ONtheRoad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONtheRoad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad.debug.xcconfig"; sourceTree = "<group>"; };
 		805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ONtheRoad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B115BA6A1E90B2FC0027803C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/ONtheRoad-aypgtbvdxubyqgghbrgsnerblhpg/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		B115BA6F1E90B6E50027803C /* TripData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripData.swift; sourceTree = "<group>"; };
 		F5E4F1DF2FAE4CB2725C2367 /* Pods-ONtheRoad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ONtheRoad.release.xcconfig"; path = "Pods/Target Support Files/Pods-ONtheRoad/Pods-ONtheRoad.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				066DACC31E8A41EE002B62E8 /* Charts.framework in Frameworks */,
+				B115BA6C1E90B3020027803C /* Charts.framework in Frameworks */,
+				B115BA6B1E90B2FC0027803C /* Charts.framework in Frameworks */,
 				B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +190,7 @@
 				06C2D2231E89BD000066AE3C /* AppDelegate.swift */,
 				069B33931E8CE5DC00760F3A /* VehicleProfileData.swift */,
 				069B33911E8CE5B100760F3A /* VehicleProfile.swift */,
+				B115BA6F1E90B6E50027803C /* TripData.swift */,
 				069B338E1E8CD1FF00760F3A /* Dashboard */,
 				069B338F1E8CD20800760F3A /* Garage */,
 				06C2D2511E8A0E1F0066AE3C /* LogsViewController.swift */,
@@ -217,6 +223,7 @@
 		51861189C707F7A46085F8AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B115BA6A1E90B2FC0027803C /* Charts.framework */,
 				066DACC21E8A41EE002B62E8 /* Charts.framework */,
 				805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */,
 			);
@@ -236,7 +243,7 @@
 				06C2D21E1E89BD000066AE3C /* Resources */,
 				02FE5E10D5DAAF1BB9C82488 /* [CP] Embed Pods Frameworks */,
 				801C68C0D1A93E426320E8B0 /* [CP] Copy Pods Resources */,
-				066DACC61E8A4212002B62E8 /* Embed Frameworks */,
+				B115BA6E1E90B3020027803C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -384,6 +391,7 @@
 				063CE46D1E8F14A30020DCCA /* MakeTableViewCell.swift in Sources */,
 				063CE4721E8F14A30020DCCA /* TrimTableViewController.swift in Sources */,
 				06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */,
+				B115BA701E90B6E50027803C /* TripData.swift in Sources */,
 				063CE4761E8F16EA0020DCCA /* KDCircularProgress.swift in Sources */,
 				063CE46E1E8F14A30020DCCA /* MakeTableViewController.swift in Sources */,
 				069B33921E8CE5B100760F3A /* VehicleProfile.swift in Sources */,
