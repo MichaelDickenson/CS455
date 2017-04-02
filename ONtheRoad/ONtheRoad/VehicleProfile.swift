@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct VehicleProfile {
+class VehicleProfile {
     
     //MARK: Properties
     var photo: UIImage?
@@ -30,7 +30,7 @@ struct VehicleProfile {
     //MARK: Initialization
     
     init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Float, efficiency: Float, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
-        
+
         // Initialize stored properties.
         self.photo = photo
         self.name = name
