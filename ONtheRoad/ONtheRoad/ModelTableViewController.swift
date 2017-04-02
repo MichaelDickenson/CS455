@@ -14,10 +14,9 @@ class ModelTableViewController: UITableViewController {
     var modelNames = [String]()
     var modelNumber: Int = 0
     var selectedIndex = 0
-    var selectedMake = ""
     var selectedModel = ""
+    var receivedMake = ""
     var returnThis: String? = ""
-    var receivedString = ""
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -77,21 +76,15 @@ class ModelTableViewController: UITableViewController {
         returnThis = selectedModel
     }
     
-    //MARK: Actions
-    
-    
-    
     // MARK: Functions
     
     func downloadData() {
         
         //let url = URL(string: "https://api.edmunds.com/api/vehicle/v2/acura/models?fmt=json&state=new&api_key=b3aa4xkn4mc964zcpnzm3pmv")
         
-        selectedMake = receivedString
-
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
         let urlExtra = "/models?fmt=json&state=new&api_key=gjppwybke2wgy6ndafz23cyr"
-        let fullURL = URL(string: "\(urlBase)\(selectedMake)\(urlExtra)")
+        let fullURL = URL(string: "\(urlBase)\(receivedMake)\(urlExtra)")
         
         do {
             let allModelsNames = try Data(contentsOf: fullURL!)

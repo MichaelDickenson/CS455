@@ -16,14 +16,6 @@ class MakeTableViewController: UITableViewController {
     var selectedIndex = 0
     var selectedMake = ""
     var returnThis: String?
-    
-    var specsArray = [String]()
-    var specsArray2 = [String]()
-    var horsepower = ""
-    var torque = ""
-    var size = ""
-    var cylinder = ""
-    var fuel = ""
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -83,8 +75,7 @@ class MakeTableViewController: UITableViewController {
         returnThis = selectedMake
     }
     
-    // MARK: Actions
-    
+    // MARK: Functions
     
     func downloadData() {
 
@@ -95,13 +86,10 @@ class MakeTableViewController: UITableViewController {
             let allMakes = try JSONSerialization.jsonObject(with: allMakesNames, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
             
             if let aryJSON = allMakes["makes"] {
-                 //makeNames = ["Select one..."]
-                
                 for index in 0...aryJSON.count-1 {
                     
                     let makes = aryJSON[index] as! [String : AnyObject]
                     makeNames.append(makes["name"]!.capitalized as String)
-                    //stateArray.append(false)
                 }
             }
         }

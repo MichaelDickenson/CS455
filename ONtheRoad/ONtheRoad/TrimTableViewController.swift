@@ -13,22 +13,22 @@ class TrimTableViewController: UITableViewController {
 
     var trimNames = [String]()
     var styleID = [Int]()
-    var trimNumber: Int = 0
+    //var trimNumber: Int = 0
     var selectedIndex = 0
-    var selectedMake = ""
-    var selectedModel = ""
-    var selectedYear = ""
     var selectedTrim = ""
     var selectedID = ""
+    var receivedMake = ""
+    var receivedModel = ""
+    var receivedYear = ""
     var returnThis: String? = ""
-    var returnThisToo: String? = ""
+    var returnThisID: String? = ""
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //downloadData()
+        downloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,15 +79,11 @@ class TrimTableViewController: UITableViewController {
         if selectedTrim == "Label" {
             selectedTrim = trimNames[0]
         }
-        returnThis = "EX-L"//selectedTrim
-        returnThisToo = "101172631"//selectedID
+        returnThis = selectedTrim
+        returnThisID = selectedID
         print(selectedTrim)
         print(selectedID)
     }
-    
-    //MARK: Actions
-    
-    
     
     // MARK: Functions
     
@@ -95,13 +91,9 @@ class TrimTableViewController: UITableViewController {
         
         //let url = URL(string: "https://api.edmunds.com/api/vehicle/v2/honda/pilot/2010/styles?fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv")
         
-        selectedMake = "honda"//VehicleProfileData.vehicleData[0].make
-        selectedModel = "pilot"//VehicleProfileData.vehicleData[1].model
-        selectedYear = "2010"//VehicleProfileData.vehicleData[2].year
-        
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
         let urlExtra = "/styles?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr"
-        let fullURL = URL(string: "\(urlBase)\(selectedMake)\("/")\(selectedModel)\("/")\(selectedYear)\(urlExtra)")
+        let fullURL = URL(string: "\(urlBase)\(receivedMake)\("/")\(receivedModel)\("/")\(receivedYear)\(urlExtra)")
         
         do {
             let allTrimNames = try Data(contentsOf: fullURL!)

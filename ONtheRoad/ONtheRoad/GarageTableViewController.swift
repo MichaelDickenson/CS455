@@ -63,11 +63,11 @@ class GarageTableViewController: UITableViewController {
         let photo1 = UIImage(named: "photo1")
         let photo2 = UIImage(named: "photo2")
         
-        guard let vehicle1 = VehicleProfile(photo: photo1!, name: "Mom's Van", make: "Dodge", model: "Caravan", year: "2012", trim: "SXT", type: "Personal", id: "123456") else {
+        guard let vehicle1 = VehicleProfile(photo: photo1!, name: "Mom's Van", make: "Dodge", model: "Caravan", year: "2012", trim: "SXT", type: "Personal", id: "123456", maxAcceleration: 5.0, efficiency: 17.6, cylinder: "8", size: "3.5", horsepower: "355", torque: "400", gas: "Gas") else {
             fatalError("Unable to instantiate vehicle1")
         }
         
-        guard let vehicle2 = VehicleProfile(photo: photo2!, name: "Truck", make: "Gmc", model: "Sierra", year: "2014", trim: "SLE", type: "Work", id: "123456") else {
+        guard let vehicle2 = VehicleProfile(photo: photo2!, name: "Truck", make: "Gmc", model: "Sierra", year: "2014", trim: "SLE", type: "Work", id: "123456", maxAcceleration: 4.0, efficiency: 14.2, cylinder: "6", size: "2.6", horsepower: "250", torque: "300", gas: "Gas") else {
             fatalError("Unable to instantiate vehicle2")
         }
         

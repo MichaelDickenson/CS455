@@ -12,12 +12,10 @@ import os.log
 class YearTableViewController: UITableViewController {
 
     var yearString = [Int]()
-    //var yearStrings: String = ""
-    //var yearNumber: Int = 0
     var selectedIndex = 0
-    var selectedMake = ""
-    var selectedModel = ""
     var selectedYear = ""
+    var receivedMake = ""
+    var receivedModel = ""
     var returnThis: String? = ""
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -25,7 +23,7 @@ class YearTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //downloadData()
+        downloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,13 +73,8 @@ class YearTableViewController: UITableViewController {
         if selectedYear == "Label" {
             selectedYear = "\(yearString[0])"
         }
-        returnThis = "2010"//selectedYear
-        //vehicles = VehicleProfile(name: "", make: selectedMake, model: selectedModel, year: "", trim: "", type: "")
+        returnThis = selectedYear
     }
-    
-    //MARK: Actions
-    
-    
     
     // MARK: Functions
     
@@ -89,12 +82,9 @@ class YearTableViewController: UITableViewController {
         
         //let url = URL(string: "https://api.edmunds.com/api/vehicle/v2/honda/accord/years?&fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv")
         
-        selectedMake = "honda"//VehicleProfileData.vehicleData[0].make
-        selectedModel = "pilot"//VehicleProfileData.vehicleData[0].model
-        
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/"
         let urlExtra = "/years?&fmt=json&api_key=gjppwybke2wgy6ndafz23cyr"
-        let fullURL = URL(string: "\(urlBase)\(selectedMake)\("/")\(selectedModel)\(urlExtra)")
+        let fullURL = URL(string: "\(urlBase)\(receivedMake)\("/")\(receivedModel)\(urlExtra)")
         
         do {
             
@@ -105,14 +95,6 @@ class YearTableViewController: UITableViewController {
                 for index in 0...aryJSON.count-1 {
                     let years = aryJSON[index] as! [String : AnyObject]
                     yearString.append((years["year"]! as? Int)!)
-
-                    //yearStrings = "\(years["year"])"
-                    
-                    //let start = yearStrings.index(yearStrings.startIndex, offsetBy: 9)
-                    //let end = yearStrings.index(yearStrings.endIndex, offsetBy: -1)
-                    //let range = start..<end
-                    
-                    //yearString.append(yearStrings.substring(with: range))
                 }
             }
         }

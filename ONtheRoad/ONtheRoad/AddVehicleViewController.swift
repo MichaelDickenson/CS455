@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import os.log
 
 class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    //var vehiclesList = [VehicleProfile]()
     var vehicles: VehicleProfile?
-    var tempString = ""
+    var tempMake = ""
+    var tempModel = ""
+    var tempYear = ""
+    var valueKM: Float = 0.0
+    var maxAccelerationTime: Float = 0.0
     
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var vehicleName: UITextField!
@@ -45,9 +49,11 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             vehicleModel.text = vehicles.model
             vehicleYear.text = vehicles.year
             vehicleTrim.text = vehicles.trim
-            
-            // Still have to add all the vehicle specs at the bottom
-
+            cylinderLabel.text = vehicles.cylinder
+            sizeLabel.text = vehicles.size
+            horsepowerLabel.text = vehicles.horsepower
+            torqueLabel.text = vehicles.torque
+            gasLabel.text = vehicles.gas
         }
         
         setViewColors()
@@ -71,15 +77,64 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         saveButton.isEnabled = false
     }
     
-    // MARK: Segue calls
+    // MARK: Segue for passing values for API calls and save button for adding vehicle
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let photo = vehicleImage.image
+        let name = vehicleName.text
+        let make = vehicleMake.text
+        let model = vehicleModel.text
+        let year = vehicleYear.text
+        let trim = vehicleTrim.text
+        var type = ""
+        
+        if typeSegmentControl.selectedSegmentIndex == 0 {
+            type = "Personal"
+        } else {
+            type = "Work"
+        }
+        
+        let maxAccel = vehicles?.maxAcceleration
+        let efficiency = vehicles?.efficiency
+        
+        let cylinder = cylinderLabel.text
+        let size = sizeLabel.text
+        let horsepower = horsepowerLabel.text
+        let torque = torqueLabel.text
+        let gas = gasLabel.text
+        
+        // Values to be passed ****************************************************************************
+        vehicles = VehicleProfile(photo: photo!, name: name!, make: make!, model: model!, year: year!, trim: trim!, type: type, id: "", maxAcceleration: maxAccel!, efficiency: efficiency!, cylinder: cylinder!, size: size!, horsepower: horsepower!, torque: torque!, gas: gas!)
         
         if segue.identifier == "modelSegue" {
             let nav = segue.destination as! UINavigationController
             let controller = nav.topViewController as! ModelTableViewController
 
-            controller.receivedString = tempString
+            controller.receivedMake = tempMake
+        }
+        
+        if segue.identifier == "yearSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! YearTableViewController
+            
+            controller.receivedMake = tempMake
+            controller.receivedModel = tempModel
+        }
+        
+        if segue.identifier == "trimSegue" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! TrimTableViewController
+            
+            controller.receivedMake = tempMake
+            controller.receivedModel = tempModel
+            controller.receivedYear = tempYear
         }
     }
     
@@ -141,7 +196,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func unwindToAddVehicle(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? MakeTableViewController, let returnedMake = sourceViewController.returnThis {
             vehicleMake.text = returnedMake
-            tempString = returnedMake.replacingOccurrences(of: " ", with: "")
+            tempMake = returnedMake.replacingOccurrences(of: " ", with: "")
 
             if vehicleMake.text! != "Label" && vehicleMake.text! != "" {
                 vehicleModel.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
@@ -161,7 +216,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? ModelTableViewController, let returnedModel = sourceViewController.returnThis {
             vehicleModel.text = returnedModel
-            tempString = returnedModel.replacingOccurrences(of: " ", with: "")
+            tempModel = returnedModel.replacingOccurrences(of: " ", with: "")
 
             
             if vehicleModel.text! != "Label" {
@@ -182,6 +237,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? YearTableViewController, let returnedYear = sourceViewController.returnThis {
             vehicleYear.text = returnedYear
+            tempYear = returnedYear
             
             if vehicleModel.text! != "Label" {
                 vehicleTrim.textColor = UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0)
@@ -201,14 +257,13 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         if let sourceViewController = sender.source as? TrimTableViewController, let returnedTrim = sourceViewController.returnThis {
             vehicleTrim.text = returnedTrim
-            tempString = returnedTrim.replacingOccurrences(of: " ", with: "")
             
             if vehicleTrim.text! == "Label" || vehicleTrim.text! == "" {
                 vehicleTrim.text = ""
             }
         }
         
-        if let sourceViewController = sender.source as? TrimTableViewController, let returnedID = sourceViewController.returnThisToo {
+        if let sourceViewController = sender.source as? TrimTableViewController, let returnedID = sourceViewController.returnThisID {
             
             if returnedID == "" {
                 vehicleMake.text = ""
@@ -395,7 +450,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     func getVehicleSpecifications(styleID: String) {
         
         let selectedStyleID = styleID
-        var valueKM: Float = 0.0
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
         let urlExtra = "/equipment?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
@@ -435,15 +489,13 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         
                         // Convert String to Int and convert mpg to km/L
                         if let accelerationTime = Float(value) {
-                            let maxAccelerationTime = (96.56 * 0.278) / accelerationTime
+                            maxAccelerationTime = (96.56 * 0.278) / accelerationTime
                             print("This is the max acceleration time using 7.8s")
                             print(maxAccelerationTime)
                         }
-                        
                     }
                     
                     if sectionName == "Engine" && cylinderLabel.text! == "" {
-                        print(index)
                         let cylinder = equipment["cylinder"] as! Int
                         let size = equipment["size"] as! Float
                         let horsepower = equipment["horsepower"] as! Int

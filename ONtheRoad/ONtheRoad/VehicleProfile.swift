@@ -19,10 +19,17 @@ struct VehicleProfile {
     var trim: String = ""
     var type: String = ""
     var id: String = ""
+    var maxAcceleration: Float = 0.0
+    var efficiency: Float = 0.0
+    var cylinder: String = ""
+    var size: String = ""
+    var horsepower: String = ""
+    var torque: String = ""
+    var gas: String = ""
     
     //MARK: Initialization
     
-    init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String) {
+    init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Float, efficiency: Float, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
         
         // Initialize stored properties.
         self.photo = photo
@@ -33,6 +40,13 @@ struct VehicleProfile {
         self.trim = trim
         self.type = type
         self.id = id
+        self.maxAcceleration = maxAcceleration
+        self.efficiency = efficiency
+        self.cylinder = cylinder
+        self.size = size
+        self.horsepower = horsepower
+        self.torque = torque
+        self.gas = gas
     }
 }
 
