@@ -17,10 +17,12 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var velocityLabel: UILabel!
     
+    var newTrip: TripData?
     lazy var stopWatch = Timer()
     var startTime = TimeInterval()
     var seconds = 3580
     var index = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +43,13 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         if startStopButton.currentTitle == "Start" {
             startStopButton.setTitle("Stop", for: .normal)
             
+            newTrip = TripData.init(vehicleID: 1, name: "", odometerStart: 0, vehicleMaxAccel: 4.8)
+             newTrip?.startTrip()
+            
             stopWatch = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DashboardViewController.updateTime(_stopWatch:)), userInfo: nil, repeats: true)
             startTime = Date.timeIntervalSinceReferenceDate
+
+            
         } else {
             startStopButton.setTitle("Start", for: .normal)
             
@@ -58,6 +65,8 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         seconds += 1
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
         timeLabel.text = String(format: "%02d", h) + ":" + String(format: "%02d", m) + ":"+String(format: "%02d", s)
+        print ("****")
+        //print(newTrip?.tripLocationData[(newTrip?.tripLocationData.count)!-1].instAcceleration)
         
     }
     

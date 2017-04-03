@@ -6,6 +6,7 @@ class TripData: NSObject, CLLocationManagerDelegate{
     //Mandatory Variables
     var startTime: Date?
     var vehicleID: Int
+    var started = 0
     
     //Optional Input Variables
     var name: String?
@@ -16,7 +17,7 @@ class TripData: NSObject, CLLocationManagerDelegate{
     var odometerEnd: Int?
     var endTime: Date?
     var tripLength: Double?
-    var tripDistance: Double?
+    var tripDistance: Double = 0
     
     var tripLocationData = [Location]()
     
@@ -29,20 +30,32 @@ class TripData: NSObject, CLLocationManagerDelegate{
     }
     
     var locationManager: CLLocationManager!
-    lazy var locations = [CLLocation]()
     
     //func startLocationUpdates()
     func startTrip(){
+        tripLocationData.append(Location.init(timeStamp: Date.init(), latitude: 0, longitude: 0)!)
+        started = 1
+        print("Trip Started")
         locationManager = CLLocationManager()
-        locationManager.startUpdatingLocation()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
+        
+        locationManager.activityType = .automotiveNavigation
+        
+        locationManager.distanceFilter = 10.0
+        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.startUpdatingLocation()
     }
     
     func endTrip(){
+        started = 0
         locationManager.stopUpdatingLocation()
         self.endTime = Date.init()
         self.tripLength = self.endTime?.timeIntervalSince(self.startTime!)
-        self.odometerEnd = self.odometerStart! + Int(self.tripDistance!)
+        self.odometerEnd = self.odometerStart! + Int(self.tripDistance)
     }
     
     //locationManager() is called everytime the GPS updates
@@ -52,21 +65,30 @@ class TripData: NSObject, CLLocationManagerDelegate{
             
             //Bananas are delicious
             print ("BANANAS")
+            print (self.locations.count)
             
             //If locations is not empty, calculate all
-            if self.locations.count > 0 {
+            if locations.count > 0 {
                 let tempLocation = Location(timeStamp: location.timestamp, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 
-                tempLocation?.instSpeed = location.distance(from: self.locations.last!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
-                tempLocation?.distanceSinceLast = location.distance(from:self.locations.last!)
+                print(location.coordinate.latitude)
+                print(location.coordinate.longitude)
+                
+                tempLocation?.instSpeed = location.distance(from: locations.last!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
+                tempLocation?.distanceSinceLast = location.distance(from: locations.last!)
                 tempLocation?.instAcceleration = ((tempLocation?.instSpeed)! - (tripLocationData.last?.instSpeed)!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
                 
-                self.tripDistance = tripDistance! + (tempLocation?.distanceSinceLast)!
+                tripDistance = tripDistance + (tempLocation?.distanceSinceLast)!
+                
+                print ("s: ", tempLocation?.instSpeed)
+                print ("d: ", tempLocation?.distanceSinceLast)
+                print ("a: ", tempLocation?.instAcceleration)
                 
                 //Efficiency Ratio
                 tempLocation?.efficiencyRatio = (tempLocation?.instAcceleration)!/self.vehicleMaxAccel!
                 
                 tripLocationData.append(tempLocation!)
+                
             }
         }
     }
@@ -79,10 +101,10 @@ class Location {
     var longitude: Double
     
     //Derived Variables
-    var instSpeed: Double?
-    var distanceSinceLast: Double?
-    var instAcceleration: Double?
-    var efficiencyRatio: Double?
+    var instSpeed: Double = 0
+    var distanceSinceLast: Double = 0
+    var instAcceleration: Double = 0
+    var efficiencyRatio: Double = 0
     
     init?(timeStamp: Date, latitude: Double, longitude: Double){
         self.timeStamp = timeStamp
