@@ -496,14 +496,14 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         
                         // Convert String to Int and convert mpg to km/L
                         if let accelerationTime = Float(value) {
-                            maxAccelerationTime = (96.56 * 0.278) / accelerationTime
+                            maxAccelerationTime = ((96.56 * 0.278) / accelerationTime)
                             print("This is the max acceleration time")
                             print(maxAccelerationTime)
                         }
                         updateSaveButtonState()
                     }
                     
-                    if sectionName == "Engine" && cylinderLabel.text! == "" {
+                    if sectionName == "Engine" && cylinderLabel.text! == "--" {
                         let cylinder = equipment["cylinder"] as! Int
                         let size = equipment["size"] as! Float
                         let horsepower = equipment["horsepower"] as! Int

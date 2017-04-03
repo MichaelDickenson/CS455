@@ -57,7 +57,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         
         seconds += 1
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
-        timeLabel.text = String(format: "%02d", h)+":"+String(format: "%02d", m)+":"+String(format: "%02d", s)
+        timeLabel.text = String(format: "%02d", h) + ":" + String(format: "%02d", m) + ":"+String(format: "%02d", s)
         
     }
     
@@ -65,48 +65,6 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 
-    
-/*    func setTimer() {
-        
-        let strMinutes = String(format: "%02i", minutes)
-        let strSeconds = String(format: "%02i", seconds)
-        let strMilliseconds = String(format: "%02i", milliseconds)
-        
-        let smallMilliseconds = "\(strMinutes)\(":")\(strSeconds)\(".")\(strMilliseconds)"
-        let myString: NSString = smallMilliseconds as NSString
-        var fullTime = NSMutableAttributedString()
-        
-        fullTime = NSMutableAttributedString(string: myString as
-            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
-        
-        fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
-        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!, range: NSRange(location: 0, length: 5))
-        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!, range: NSRange(location: 5, length: 3))
-        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(
-                                location: 2, length: 1))
-        fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(
-                                location: 5, length: 1))
-        
-        timeLabel.attributedText = fullTime
-        
-        var km = NSMutableAttributedString()
-        
-        km = NSMutableAttributedString(string: distanceLabel.text! as
-            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 45.0)!])
-        km.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 18.0)!, range: NSRange(
-            location: 2, length: 2))
-        
-        distanceLabel.attributedText = km
-        
-        var vel = NSMutableAttributedString()
-        
-        vel = NSMutableAttributedString(string: velocityLabel.text! as
-            String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 45.0)!])
-        vel.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 18.0)!, range: NSRange(
-            location: 2, length: 5))
-        
-        velocityLabel.attributedText = vel
-    }*/
 }
 
 
