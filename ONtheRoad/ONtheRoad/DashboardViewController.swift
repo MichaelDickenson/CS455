@@ -56,33 +56,8 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     func updateTime(_stopWatch: Timer) {
         
         seconds += 1
-        
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
-        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: Double(s))
-        let minutesQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: Double(m))
-        let hoursQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: Double(h))
-        
-        if hoursQuantity.description == "0 hr" {
-            
-            var fullTime = NSMutableAttributedString()
-            let myString = hoursQuantity.description + " " + minutesQuantity.description + " " + secondsQuantity.description
-            
-            fullTime = NSMutableAttributedString(string: myString as
-                String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
-            
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 8, length: 3))
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 3, length: 4))
-            fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
-            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(location: 2, length: 1))
-            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(location: 5, length: 1))
-            
-            timeLabel.attributedText = fullTime
-            
-            
-            timeLabel.text = minutesQuantity.description + " " + secondsQuantity.description
-        } else {
-            timeLabel.text = hoursQuantity.description + " " + minutesQuantity.description + " " + secondsQuantity.description
-        }
+        timeLabel.text = String(format: "%02d", h)+":"+String(format: "%02d", m)+":"+String(format: "%02d", s)
         
     }
     
