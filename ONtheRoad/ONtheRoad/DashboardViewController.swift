@@ -22,6 +22,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     var startTime = TimeInterval()
     var seconds = 3580
     var index = 0
+    var newTrip: TripData?
     
     
     override func viewDidLoad() {
@@ -48,7 +49,6 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
             
             stopWatch = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DashboardViewController.updateTime(_stopWatch:)), userInfo: nil, repeats: true)
             startTime = Date.timeIntervalSinceReferenceDate
-
             
         } else {
             startStopButton.setTitle("Start", for: .normal)

@@ -15,8 +15,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     var tempMake = ""
     var tempModel = ""
     var tempYear = ""
-    var valueKM: Float = 0.0
-    var maxAccelerationTime: Float = 0.0
+    var valueKM: Double = 0.0
+    var maxAccelerationTime: Double = 0.0
     
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var vehicleName: UITextField!
@@ -139,6 +139,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         // Values to be passed ****************************************************************************
         vehicles = VehicleProfile(photo: photo!, name: name!, make: make!, model: model!, year: year!, trim: trim!, type: type, id: "", maxAcceleration: maxAccel, efficiency: efficiency, cylinder: cylinder!, size: size!, horsepower: horsepower!, torque: torque!, gas: gas!)
+        
+        vehicles?.saveVehicle()
     }
     
     // MARK: Actions
@@ -476,7 +478,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         var value = aryValues["value"] as! String
                         
                         // Convert String to Int and convert mpg to km/L
-                        if let valueNumber = Float(value) {
+                        if let valueNumber = Double(value) {
                             valueKM = 235 / valueNumber
                             print(valueNumber)
                             print(value)
@@ -493,9 +495,11 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         aryValues = attr[7] as! [String : AnyObject]
                         //name = aryValues["name"] as! String
                         value = aryValues["value"] as! String
+                        print("This is time??????")
+                        print("value")
                         
                         // Convert String to Int and convert mpg to km/L
-                        if let accelerationTime = Float(value) {
+                        if let accelerationTime = Double(value) {
                             maxAccelerationTime = ((96.56 * 0.278) / accelerationTime)
                             print("This is the max acceleration time")
                             print(maxAccelerationTime)
@@ -503,9 +507,11 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         updateSaveButtonState()
                     }
                     
-                    if sectionName == "Engine" && cylinderLabel.text! == "--" {
+                    var counter = 0
+                    
+                    repeat {
                         let cylinder = equipment["cylinder"] as! Int
-                        let size = equipment["size"] as! Float
+                        let size = equipment["size"] as! Double
                         let horsepower = equipment["horsepower"] as! Int
                         let torque = equipment["torque"] as! Int
                         let gas = (equipment["type"] as! String).capitalized
@@ -516,13 +522,14 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         torqueLabel.text = "\(torque)"
                         gasLabel.text = gas
                         
+                        counter += 1
+                        
                         print(cylinder)
                         print(size)
                         print(horsepower)
                         print(torque)
                         print(gas)
-                        
-                    }
+                    } while counter < 1
                 }
             }
         }

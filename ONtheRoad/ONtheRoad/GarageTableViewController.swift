@@ -19,6 +19,7 @@ class GarageTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         loadSampleData()
+        loadVehicleFromArray()
         
     }
 
@@ -86,7 +87,18 @@ class GarageTableViewController: UITableViewController {
         
         garage += [vehicle1, vehicle2]        
     }
-
+    
+    func loadVehicleFromArray() {
+        let vehicles: VehicleProfile? = VehicleProfile.init(photo: #imageLiteral(resourceName: "photo1"), name: "", make: "", model: "", year: "", trim: "", type: "", id: "", maxAcceleration: 0.0, efficiency: 0.0, cylinder: "", size: "", horsepower: "", torque: "", gas: "")
+        
+        do {
+            let x = vehicles?.loadVehicle()
+            if x != nil {
+                garage.append(x!)
+                print(garage)
+            }
+        }
+    }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
