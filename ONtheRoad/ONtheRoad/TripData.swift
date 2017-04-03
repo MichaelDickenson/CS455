@@ -4,6 +4,7 @@ import CoreLocation
 class TripData: NSObject, CLLocationManagerDelegate{
     
     //Mandatory Variables
+    var locationManager: CLLocationManager!
     var startTime: Date?
     var vehicleID: Int
     var started = 0
@@ -29,24 +30,24 @@ class TripData: NSObject, CLLocationManagerDelegate{
         self.vehicleMaxAccel = vehicleMaxAccel
     }
     
-    var locationManager: CLLocationManager!
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     //func startLocationUpdates()
     func startTrip(){
         tripLocationData.append(Location.init(timeStamp: Date.init(), latitude: 0, longitude: 0)!)
         started = 1
-        print("Trip Started")
         locationManager = CLLocationManager()
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
-        
-        locationManager.activityType = .automotiveNavigation
-        
+        locationManager.activityType =
+            .automotiveNavigation
         locationManager.distanceFilter = 10.0
         locationManager.requestAlwaysAuthorization()
-        
+        print("Trip Started")
         locationManager.startUpdatingLocation()
     }
     
@@ -86,9 +87,7 @@ class TripData: NSObject, CLLocationManagerDelegate{
                 
                 //Efficiency Ratio
                 tempLocation?.efficiencyRatio = (tempLocation?.instAcceleration)!/self.vehicleMaxAccel!
-                
                 tripLocationData.append(tempLocation!)
-                
             }
         }
     }

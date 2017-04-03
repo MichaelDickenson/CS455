@@ -21,7 +21,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     lazy var stopWatch = Timer()
     var startTime = TimeInterval()
     var seconds = 3580
-    var index = 0 
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
         timeLabel.text = String(format: "%02d", h) + ":" + String(format: "%02d", m) + ":"+String(format: "%02d", s)
         print ("****")
-        //print(newTrip?.tripLocationData[(newTrip?.tripLocationData.count)!-1].instAcceleration)
+       // print(newTrip?.tripLocationData[(newTrip?.tripLocationData.count)!-1].instAcceleration)
         
     }
     
