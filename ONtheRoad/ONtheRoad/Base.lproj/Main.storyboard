@@ -221,20 +221,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="SaP-l0-KP1">
-                                <rect key="frame" x="16" y="36.5" width="343" height="80.5"/>
+                                <rect key="frame" x="16" y="54" width="343" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA2-6N-DnO">
-                                        <rect key="frame" x="0.0" y="0.0" width="9.5" height="80.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="9.5" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msR-Sa-fYs">
-                                        <rect key="frame" x="20" y="0.0" width="303" height="80.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="303" height="46"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="00:00.00">
+                                            <fragment content="00:00:00">
                                                 <attributes>
-                                                    <font key="NSFont" size="70" name="HelveticaNeue-UltraLight"/>
+                                                    <font key="NSFont" size="40" name="HelveticaNeue-UltraLight"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -242,7 +242,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-Dq-KH2">
-                                        <rect key="frame" x="333.5" y="0.0" width="9.5" height="80.5"/>
+                                        <rect key="frame" x="333.5" y="0.0" width="9.5" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

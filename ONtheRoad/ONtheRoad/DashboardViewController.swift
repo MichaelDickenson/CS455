@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class DashboardViewController: UIViewController, UIScrollViewDelegate {
     
@@ -16,18 +17,15 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var velocityLabel: UILabel!
     
-    var stopWatch = Timer()
+    lazy var stopWatch = Timer()
     var startTime = TimeInterval()
-    var hours = 0
-    var minutes = 0
-    var seconds = 0
-    var milliseconds = 0
+    var seconds = 3580
     var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTimer()
+        //setTimer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,8 +41,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         if startStopButton.currentTitle == "Start" {
             startStopButton.setTitle("Stop", for: .normal)
             
-            let aSelector: Selector = #selector(DashboardViewController.updateTime)
-            stopWatch = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            stopWatch = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DashboardViewController.updateTime(_stopWatch:)), userInfo: nil, repeats: true)
             startTime = Date.timeIntervalSinceReferenceDate
         } else {
             startStopButton.setTitle("Start", for: .normal)
@@ -56,68 +53,45 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Functions
     
-    func updateTime() {
+    func updateTime(_stopWatch: Timer) {
         
-        milliseconds += 1
+        seconds += 1
         
-        if milliseconds == 100 {
-            milliseconds = 0
-            seconds += 1
-        }
+        let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
+        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: Double(s))
+        let minutesQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: Double(m))
+        let hoursQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: Double(h))
         
-        if seconds == 60 {
-            seconds = 0
-            minutes += 1
-        }
-        
-        if minutes == 60 {
-            minutes = 0
-            hours += 1
-        }
-        
-        let strHours = String(format: "%2i", hours)
-        let strMinutes = String(format: "%02i", minutes)
-        let strSeconds = String(format: "%02i", seconds)
-        let strMilliseconds = String(format: "%02i", milliseconds)
-        
-        if hours != 0 {
+        if hoursQuantity.description == "0 hr" {
             
-            var frame = timeLabel.frame;
-            frame.origin.y = 0
-            frame.origin.x = 5
-            timeLabel.frame = frame;
-            
-            let smallMilliseconds = "\(strHours)\(":")\(strMinutes)\(":")\(strSeconds)\(".")\(strMilliseconds)"
-            let myString: NSString = smallMilliseconds as NSString
             var fullTime = NSMutableAttributedString()
+            let myString = hoursQuantity.description + " " + minutesQuantity.description + " " + secondsQuantity.description
             
             fullTime = NSMutableAttributedString(string: myString as
                 String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!], range: NSRange(location: 8, length: 3))
+            
+            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 8, length: 3))
             fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 3, length: 4))
             fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
             fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(location: 2, length: 1))
             fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(location: 5, length: 1))
             
             timeLabel.attributedText = fullTime
+            
+            
+            timeLabel.text = minutesQuantity.description + " " + secondsQuantity.description
         } else {
-            let smallMilliseconds = "\(strMinutes)\(":")\(strSeconds)\(".")\(strMilliseconds)"
-            let myString: NSString = smallMilliseconds as NSString
-            var fullTime = NSMutableAttributedString()
-            
-            fullTime = NSMutableAttributedString(string: myString as
-                String, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!])
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 30.0)!], range: NSRange(location: 5, length: 3))
-            fullTime.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-UltraLight", size: 70.0)!], range: NSRange(location: 3, length: 1))
-            fullTime.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 99/255.0, green: 175/255.0, blue: 213/255.0, alpha: 1.0), range: NSRange(location: 0, length: 8))
-            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 70.0)!, range: NSRange(location: 2, length: 1))
-            fullTime.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 40.0)!, range: NSRange(location: 5, length: 1))
-            
-            timeLabel.attributedText = fullTime
+            timeLabel.text = hoursQuantity.description + " " + minutesQuantity.description + " " + secondsQuantity.description
         }
+        
     }
     
-    func setTimer() {
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
+    
+/*    func setTimer() {
         
         let strMinutes = String(format: "%02i", minutes)
         let strSeconds = String(format: "%02i", seconds)
@@ -157,7 +131,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
             location: 2, length: 5))
         
         velocityLabel.attributedText = vel
-    }
+    }*/
 }
 
 
