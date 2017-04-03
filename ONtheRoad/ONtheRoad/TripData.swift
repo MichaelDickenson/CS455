@@ -65,7 +65,7 @@ class TripData: NSObject, CLLocationManagerDelegate{
             
             //Bananas are delicious
             print ("BANANAS")
-            print (self.locations.count)
+            //print (self.locations.count)
             
             //If locations is not empty, calculate all
             if locations.count > 0 {

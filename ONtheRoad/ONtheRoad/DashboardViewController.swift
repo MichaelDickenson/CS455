@@ -21,9 +21,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     lazy var stopWatch = Timer()
     var startTime = TimeInterval()
     var seconds = 3580
-    var index = 0
-    var newTrip: TripData?
-    
+    var index = 0 
     
     override func viewDidLoad() {
         super.viewDidLoad()

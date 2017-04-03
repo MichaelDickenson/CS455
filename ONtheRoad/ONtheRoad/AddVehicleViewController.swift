@@ -507,29 +507,25 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                         updateSaveButtonState()
                     }
                     
-                    var counter = 0
-                    
-                    repeat {
+                    /*for i in 0...0 {
                         let cylinder = equipment["cylinder"] as! Int
                         let size = equipment["size"] as! Double
                         let horsepower = equipment["horsepower"] as! Int
                         let torque = equipment["torque"] as! Int
-                        let gas = (equipment["type"] as! String).capitalized
+                        let gas = (equipment["type"] as! String).capitalized*/
                         
-                        cylinderLabel.text = "\(cylinder)"
-                        sizeLabel.text = "\(size)"
-                        horsepowerLabel.text = "\(horsepower)"
-                        torqueLabel.text = "\(torque)"
-                        gasLabel.text = gas
+                        cylinderLabel.text = "1"//"\(cylinder)"
+                        sizeLabel.text = "1"//"\(size)"
+                        horsepowerLabel.text = "1"//"\(horsepower)"
+                        torqueLabel.text = "1"//"\(torque)"
+                        gasLabel.text = "1"//gas
                         
-                        counter += 1
-                        
-                        print(cylinder)
+                        /*print(cylinder)
                         print(size)
                         print(horsepower)
                         print(torque)
                         print(gas)
-                    } while counter < 1
+                    }*/
                 }
             }
         }

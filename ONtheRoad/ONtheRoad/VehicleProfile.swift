@@ -161,19 +161,21 @@ class VehicleProfile: NSObject, NSCoding {
         self.init(photo: photo!, name: name, make: make, model: model, year: year, trim: trim, type: type, id: id, maxAcceleration: maxAcceleration, efficiency: efficiency, cylinder: cylinder, size: size, horsepower: horsepower, torque: torque, gas: gas)
         
     }
-
     
     func saveVehicle() {
         
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self, toFile: VehicleProfile.ArchiveURL.path)
+        print(VehicleProfile.ArchiveURL.path)
         if isSuccessfulSave {
-            os_log("Vehicle successfully saved.", log: OSLog.default, type: .debug)
+            os_log("Vehicle successfully saved. Did it really save?????", log: OSLog.default, type: .debug)
         } else {
             os_log("Failed to save vehicle...", log: OSLog.default, type: .error)
         }
     }
     
     func loadVehicle() -> VehicleProfile?  {
+        print("I am printing this")
+        print(NSKeyedUnarchiver.unarchiveObject(withFile: VehicleProfile.ArchiveURL.path) as? VehicleProfile! as Any)
         return NSKeyedUnarchiver.unarchiveObject(withFile: VehicleProfile.ArchiveURL.path) as? VehicleProfile
     }
 }

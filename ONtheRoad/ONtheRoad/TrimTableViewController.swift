@@ -28,7 +28,7 @@ class TrimTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadData()
+        //downloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,10 +79,8 @@ class TrimTableViewController: UITableViewController {
         if selectedTrim == "Label" {
             selectedTrim = trimNames[0]
         }
-        returnThis = selectedTrim
-        returnThisID = selectedID
-        print(selectedTrim)
-        print(selectedID)
+        returnThis = "EX-L"//selectedTrim
+        returnThisID = "101172631"//selectedID
     }
     
     // MARK: Functions

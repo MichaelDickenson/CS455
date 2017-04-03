@@ -11,6 +11,7 @@ import os.log
 
 class GarageTableViewController: UITableViewController {
     
+    var vehicles: VehicleProfile?
     var garage = [VehicleProfile]()
 
     override func viewDidLoad() {
@@ -18,8 +19,13 @@ class GarageTableViewController: UITableViewController {
 
         navigationItem.leftBarButtonItem = editButtonItem
         
+        if let savedVehicles = vehicles?.loadVehicle() {
+            garage.append(savedVehicles)
+        }
+        
         loadSampleData()
-        loadVehicleFromArray()
+        
+        print(garage)
         
     }
 
@@ -62,11 +68,20 @@ class GarageTableViewController: UITableViewController {
     @IBAction func unwindToGarageList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AddVehicleViewController, let vehicle = sourceViewController.vehicles {
             
-            // Add new vehicle
-            let newIndexPath = IndexPath(row: garage.count, section: 0)
-            
-            garage.append(vehicle)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing vehicle.
+                garage[selectedIndexPath.row] = vehicle
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                // Add new vehicle
+                let newIndexPath = IndexPath(row: garage.count, section: 0)
+                
+                garage.append(vehicle)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+            vehicles?.saveVehicle()
+            print(garage)
         }
     }
     
@@ -85,12 +100,13 @@ class GarageTableViewController: UITableViewController {
             fatalError("Unable to instantiate vehicle2")
         }
         
-        garage += [vehicle1, vehicle2]        
+        garage += [vehicle1, vehicle2]
+
+        loadVehicleFromArray()
     }
     
     func loadVehicleFromArray() {
-        let vehicles: VehicleProfile? = VehicleProfile.init(photo: #imageLiteral(resourceName: "photo1"), name: "", make: "", model: "", year: "", trim: "", type: "", id: "", maxAcceleration: 0.0, efficiency: 0.0, cylinder: "", size: "", horsepower: "", torque: "", gas: "")
-        
+       
         do {
             let x = vehicles?.loadVehicle()
             if x != nil {
@@ -109,9 +125,13 @@ class GarageTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
             // Delete the row from the data source
+            
             garage.remove(at: indexPath.row)
+            vehicles?.saveVehicle()
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
