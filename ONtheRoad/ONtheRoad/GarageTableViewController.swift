@@ -75,6 +75,9 @@ class GarageTableViewController: UITableViewController {
                 let newIndexPath = IndexPath(row: garage.count, section: 0)
                 
                 garage.append(vehicle)
+                VehicleProfile.totalNumberOfVehicles = garage.count
+                print("This is the total number of vehicles when adding a new one")
+                print(VehicleProfile.totalNumberOfVehicles)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             //vehicle.saveVehicle(numberOfVehicle)
@@ -110,9 +113,12 @@ class GarageTableViewController: UITableViewController {
         var ONTINEUSGH = true
         while(ONTINEUSGH) {
             if let savedVehicles = self.vehicles.loadVehicle(numberOfVehicle: count) {
-                print("Inside first part of loadVehicleFromArray")
                 self.garage.append(savedVehicles)
                 count += 1
+                VehicleProfile.totalNumberOfVehicles += 1
+                
+                print("This is the total number of vehicles when loading")
+                print(VehicleProfile.totalNumberOfVehicles)
             }
             else{
                 ONTINEUSGH = false
@@ -134,10 +140,14 @@ class GarageTableViewController: UITableViewController {
             let rowNum = indexPath.row
             
             garage.remove(at: indexPath.row)
-            vehicles.deleteVehicle(numberOfVehicle: rowNum)
-            
-            print("This is row number")
+           
+            print("This is the total number of vehicles when deleting")
+            print(VehicleProfile.totalNumberOfVehicles)
+            print("This is row number when deleting")
             print(rowNum)
+           
+            vehicles.deleteVehicle(numberOfVehicle: rowNum + 1, totalNumberOfVehicles: VehicleProfile.totalNumberOfVehicles)
+            
             //garage.insert(vehicles, at: rowNum)
             tableView.deleteRows(at: [indexPath], with: .fade)
             

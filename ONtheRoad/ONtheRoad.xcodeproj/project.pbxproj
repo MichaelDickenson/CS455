@@ -33,10 +33,10 @@
 		06C2D2541E8A0E2C0066AE3C /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2531E8A0E2C0066AE3C /* AnalysisViewController.swift */; };
 		06C2D2561E8A0E480066AE3C /* HomeGraphsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2551E8A0E480066AE3C /* HomeGraphsViewController.swift */; };
 		06C2D2581E8A0E5F0066AE3C /* GraphOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2D2571E8A0E5F0066AE3C /* GraphOneViewController.swift */; };
+		06EE9BF01E9374140060B45C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; };
+		06EE9BF11E9374140060B45C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 066DACC21E8A41EE002B62E8 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805BBC586CD39BC02A2EE363 /* Pods_ONtheRoad.framework */; };
 		B10CE9C21E93211C0082FB06 /* NewDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10CE9C11E93211C0082FB06 /* NewDriveViewController.swift */; };
-		B10CE9C51E9321B20082FB06 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10CE9C31E9321A80082FB06 /* Charts.framework */; };
-		B10CE9C61E9321B20082FB06 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B10CE9C31E9321A80082FB06 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B115BA701E90B6E50027803C /* TripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B115BA6F1E90B6E50027803C /* TripData.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,13 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B10CE9C71E9321B20082FB06 /* Embed Frameworks */ = {
+		06EE9BF21E9374140060B45C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B10CE9C61E9321B20082FB06 /* Charts.framework in Embed Frameworks */,
+				06EE9BF11E9374140060B45C /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,8 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B10CE9C51E9321B20082FB06 /* Charts.framework in Frameworks */,
 				B037DDFFED8D704FFF8A87DB /* Pods_ONtheRoad.framework in Frameworks */,
+				06EE9BF01E9374140060B45C /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +254,7 @@
 				06C2D21E1E89BD000066AE3C /* Resources */,
 				02FE5E10D5DAAF1BB9C82488 /* [CP] Embed Pods Frameworks */,
 				801C68C0D1A93E426320E8B0 /* [CP] Copy Pods Resources */,
-				B10CE9C71E9321B20082FB06 /* Embed Frameworks */,
+				06EE9BF21E9374140060B45C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

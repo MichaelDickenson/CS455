@@ -463,7 +463,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let selectedStyleID = styleID
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
-        let urlExtra = "/equipment?fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
+        let urlExtra = "/equipment?fmt=json&api_key=gjppwybke2wgy6ndafz23cyr" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
         let fullURL = URL(string: "\(urlBase)\(selectedStyleID)\(urlExtra)")
         
         do {
