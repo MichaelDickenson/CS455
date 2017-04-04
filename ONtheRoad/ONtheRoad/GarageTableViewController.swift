@@ -20,10 +20,6 @@ class GarageTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         loadVehicleFromArray()
-        //loadSampleData()
-        
-        print(garage)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,14 +69,10 @@ class GarageTableViewController: UITableViewController {
             else {
                 // Add new vehicle
                 let newIndexPath = IndexPath(row: garage.count, section: 0)
-                
                 garage.append(vehicle)
                 VehicleProfile.totalNumberOfVehicles = garage.count
-                print("This is the total number of vehicles when adding a new one")
-                print(VehicleProfile.totalNumberOfVehicles)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-            //vehicle.saveVehicle(numberOfVehicle)
             print(garage)
         }
     }
@@ -116,9 +108,6 @@ class GarageTableViewController: UITableViewController {
                 self.garage.append(savedVehicles)
                 count += 1
                 VehicleProfile.totalNumberOfVehicles += 1
-                
-                print("This is the total number of vehicles when loading")
-                print(VehicleProfile.totalNumberOfVehicles)
             }
             else{
                 ONTINEUSGH = false
@@ -138,19 +127,9 @@ class GarageTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             let rowNum = indexPath.row
-            
             garage.remove(at: indexPath.row)
-           
-            print("This is the total number of vehicles when deleting")
-            print(VehicleProfile.totalNumberOfVehicles)
-            print("This is row number when deleting")
-            print(rowNum)
-           
             vehicles.deleteVehicle(numberOfVehicle: rowNum + 1, totalNumberOfVehicles: VehicleProfile.totalNumberOfVehicles)
-            
-            //garage.insert(vehicles, at: rowNum)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }

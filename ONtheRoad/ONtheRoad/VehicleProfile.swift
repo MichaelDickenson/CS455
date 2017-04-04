@@ -180,11 +180,8 @@ class VehicleProfile: NSObject, NSCoding {
     }
     
     func saveVehicle(numberOfVehicle: Int) {
-        print("This is the number vehicle when saving")
-        print(numberOfVehicle)
         let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self, toFile: currentArchiveURL.path)
-        print(currentArchiveURL.path)
 
         if isSuccessfulSave {
             os_log("Vehicle successfully saved. Did it really save?????", log: OSLog.default, type: .debug)
@@ -195,37 +192,24 @@ class VehicleProfile: NSObject, NSCoding {
     
     func loadVehicle(numberOfVehicle: Int) -> VehicleProfile? {
         let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
-        print("LoadVehicle function completed")
         return NSKeyedUnarchiver.unarchiveObject(withFile: currentArchiveURL.path) as? VehicleProfile
     }
     
     func deleteVehicle(numberOfVehicle: Int, totalNumberOfVehicles: Int) {
-        print("Deleting Vehicle Number: " + String(numberOfVehicle))
         let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
-        print("This is number of vehicle when deleting")
-        print(numberOfVehicle)
-        print(totalNumberOfVehicles)
+
         do {
-            print("Hello")
             try FileManager.default.removeItem(at: currentArchiveURL)
             var i = numberOfVehicle
-            print("Hello again")
+            
             while i < totalNumberOfVehicles {
-                print("Inside for loop")
                 // Get next vehicle after deleted vehicle
                 let nextArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(i + 1))
                 let nextVehicleInArray = NSKeyedUnarchiver.unarchiveObject(withFile: nextArchiveURL.path) as? VehicleProfile
-                print("This is the value of the next element when deleting/loop")
-                print(nextVehicleInArray as Any)
                 
-                // Set new name/path
-                print("This is index and it is supposed to be the same value as the deleted vehicle")
-                print(index)
-                
+                // Set new name/path for vehicles left
                 let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(i))
                 let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(nextVehicleInArray as Any, toFile: currentArchiveURL.path)
-                print("This is the new path")
-                print(currentArchiveURL.path)
                 
                 if isSuccessfulSave {
                     os_log("Vehicle successfully saved. This is updating properly", log: OSLog.default, type: .debug)
@@ -235,10 +219,9 @@ class VehicleProfile: NSObject, NSCoding {
                 i += 1
             }
             
-            // Delete copy of remaining vehicle... last vehicle
+            // Delete copy of remaining vehicle... last vehicle in array
             let remainingArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(totalNumberOfVehicles))
             do {
-                print("Hello")
                 try FileManager.default.removeItem(at: remainingArchiveURL)
                 VehicleProfile.numberOfVehiclesSaved -= 1
             } catch {
