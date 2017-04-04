@@ -20,6 +20,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
     
     var locationManager: CLLocationManager!
     var newTrip: TripData?
+    lazy var locations = [CLLocation]()
     lazy var stopWatch = Timer()
     var startTime = TimeInterval()
     var seconds = 0
@@ -28,6 +29,14 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        newTrip?.tripLocationData.append(Location.init(timeStamp: Date.init(), latitude: 0, longitude: 0, distance: 0)!)
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.activityType = .automotiveNavigation
+        locationManager.distanceFilter = 10.0
+        locationManager.requestAlwaysAuthorization()
         //setTimer()
     }
     
@@ -41,14 +50,6 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
     
     //Starts the trip
     func startTrip(){
-        tripLocationData.append(Location.init(timeStamp: Date.init(), latitude: 0, longitude: 0)!)
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.activityType = .automotiveNavigation
-        locationManager.distanceFilter = 10.0
-        locationManager.requestAlwaysAuthorization()
         print("Trip Started")
         locationManager.startUpdatingLocation()
     }
@@ -56,9 +57,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
     //Stops the trip
     func endTrip(){
         locationManager.stopUpdatingLocation()
-        self.endTime = Date.init()
-        self.tripLength = self.endTime?.timeIntervalSince(self.startTime!)
-        self.odometerEnd = self.odometerStart! + Int(self.tripDistance)
+        newTrip?.endTime = Date.init()
     }
     
     //locationManager() is called everytime the GPS updates
@@ -68,14 +67,18 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
             
             //Bananas are delicious
             print ("BANANAS")
-            //print (self.locations.count)
-            
+            print (self.locations.count)
+  //          print(location.coordinate.latitude)
+  //          print(location.coordinate.longitude)
             //If locations is not empty, calculate all
             if self.locations.count > 0 {
-                newTrip?.addCLLocation(location: self.location)
-                print(location.coordinate.latitude)
-                print(location.coordinate.longitude)
+                let distanceSinceLast = location.distance(from: self.locations.last!)
+                newTrip?.addCLLocation(location: location, distanceSinceLast: distanceSinceLast)
+                print ("d: ", distanceSinceLast)
+  //              print(location.coordinate.latitude)
+  //              print(location.coordinate.longitude)
             }
+            self.locations.append(location)
         }
     }
     
@@ -88,14 +91,14 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocation
             startStopButton.setTitle("Stop", for: .normal)
             
             newTrip = TripData.init(vehicleID: 1, name: "", odometerStart: 0, vehicleMaxAccel: 4.8)
-             newTrip?.startTrip()
+            startTrip()
             
             stopWatch = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DashboardViewController.updateTime(_stopWatch:)), userInfo: nil, repeats: true)
             startTime = Date.timeIntervalSinceReferenceDate
             
         } else {
             startStopButton.setTitle("Start", for: .normal)
-            
+            endTrip()
             stopWatch.invalidate()
             //stopWatch = nil
         }

@@ -31,40 +31,45 @@ class TripData: NSObject, CLLocationManagerDelegate{
         self.odometerStart = odometerStart
         self.vehicleMaxAccel = vehicleMaxAccel
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addCLLocation(location: CLLocation)
+    func addCLLocation(location: CLLocation, distanceSinceLast: Double)
     {
-        var tempLocation: [Location]
+        let tempLocation = Location()
         
         //Getting the timestamp
-            tempLocation?.timeStamp = location.timestamp
+            tempLocation.timeStamp = location.timestamp
         //Getting the lat
-            tempLocation?.latitude = location.coordinate.latitude
+            tempLocation.latitude = location.coordinate.latitude
         //Getting the long
-            tempLocation?.longitude = location.coordinate.longitude
+            tempLocation.longitude = location.coordinate.longitude
         //Getting the distance
-        //Can't remember this fucker
+            tempLocation.distance = distanceSinceLast
         
         //Getting the instSpeed
-            tempLocation?.instSpeed = location.distance(from: locations.last!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
+            tempLocation.instSpeed = (tempLocation.distance)
         //Getting the instAccel
-            tempLocation?.instAccel = ((tempLocation?.instSpeed)! - (tripLocationData.last?.instSpeed)!)/location.timestamp.timeIntervalSince((locations.last?.timestamp)!)
+        if tripLocationData.count > 1 {
+            tempLocation.instAccel = tempLocation.instSpeed - self.tripLocationData[tripLocationData.count-1].instSpeed
+        }
         //Getting the effRatio
-            tempLocation?.efficiencyRatio = tempLocation?.instAccel/(vehicleMaxAccel/2)
+            tempLocation.efficiencyRatio = tempLocation.instAccel/(vehicleMaxAccel!/2)
+        
+        self.tripLocationData.append(tempLocation)
     }
     
 }
 
 class Location {
     //Mandatory Variables
-    var timeStamp: Date
-    var latitude: Double
-    var longitude: Double
-    var distance: Double
+    var timeStamp: Date = Date.init()
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var distance: Double = 0
     
     //Derived Variables
     var instSpeed: Double = 0
@@ -76,6 +81,10 @@ class Location {
         self.latitude = latitude
         self.longitude = longitude
         self.distance = distance
+    }
+    
+    init(){
+        //Doesnothing
     }
     
 }
