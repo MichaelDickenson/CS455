@@ -56,7 +56,11 @@ class VehicleProfile: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Double, efficiency: Double, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
+    override init(){
+        //Quick Initializer
+    }
+    
+    init?(photo: UIImage?, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Double, efficiency: Double, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
 
         // Initialize stored properties.
         self.photo = photo
@@ -104,61 +108,61 @@ class VehicleProfile: NSObject, NSCoding {
             return nil
         }
         guard let make = aDecoder.decodeObject(forKey: PropertyKey.make) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the make for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let model = aDecoder.decodeObject(forKey: PropertyKey.model) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the model for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let year = aDecoder.decodeObject(forKey: PropertyKey.year) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the year for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let trim = aDecoder.decodeObject(forKey: PropertyKey.trim) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the trim for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let type = aDecoder.decodeObject(forKey: PropertyKey.type) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the type for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let id = aDecoder.decodeObject(forKey: PropertyKey.id) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the id for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let maxAcceleration = aDecoder.decodeObject(forKey: PropertyKey.maxAcceleration) as? Double else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+        guard let maxAcceleration = aDecoder.decodeDouble(forKey: PropertyKey.maxAcceleration) as Double? else {
+            os_log("Unable to decode the maxAcceleration for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let efficiency = aDecoder.decodeObject(forKey: PropertyKey.efficiency) as? Double else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+        guard let efficiency = aDecoder.decodeDouble(forKey: PropertyKey.efficiency) as Double? else {
+            os_log("Unable to decode the efficiency for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let cylinder = aDecoder.decodeObject(forKey: PropertyKey.cylinder) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the cylinder for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let size = aDecoder.decodeObject(forKey: PropertyKey.size) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the size for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let horsepower = aDecoder.decodeObject(forKey: PropertyKey.horsepower) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the horsepower for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let torque = aDecoder.decodeObject(forKey: PropertyKey.torque) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the torque for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let gas = aDecoder.decodeObject(forKey: PropertyKey.gas) as? String else {
-            os_log("Unable to decode the name for a Vehicle object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the gas for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
         
         let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
         
-        self.init(photo: photo!, name: name, make: make, model: model, year: year, trim: trim, type: type, id: id, maxAcceleration: maxAcceleration, efficiency: efficiency, cylinder: cylinder, size: size, horsepower: horsepower, torque: torque, gas: gas)
+        self.init(photo: photo, name: name, make: make, model: model, year: year, trim: trim, type: type, id: id, maxAcceleration: maxAcceleration, efficiency: efficiency, cylinder: cylinder, size: size, horsepower: horsepower, torque: torque, gas: gas)
         
     }
     
@@ -175,7 +179,6 @@ class VehicleProfile: NSObject, NSCoding {
     
     func loadVehicle() -> VehicleProfile?  {
         print("I am printing this")
-        print(NSKeyedUnarchiver.unarchiveObject(withFile: VehicleProfile.ArchiveURL.path) as? VehicleProfile! as Any)
         return NSKeyedUnarchiver.unarchiveObject(withFile: VehicleProfile.ArchiveURL.path) as? VehicleProfile
     }
 }

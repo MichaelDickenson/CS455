@@ -11,42 +11,41 @@ import os.log
 
 class GarageTableViewController: UITableViewController {
     
-    var vehicles: VehicleProfile?
+    var vehicles = VehicleProfile.init()
     var garage = [VehicleProfile]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.leftBarButtonItem = editButtonItem
         
-        if let savedVehicles = vehicles?.loadVehicle() {
+        if let savedVehicles = vehicles.loadVehicle() {
             garage.append(savedVehicles)
         }
         
-        loadSampleData()
-        
+        //loadSampleData()
         print(garage)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return garage.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "vehicleTableCell", for: indexPath) as? GarageTableViewCell
-
+        
         let garages = garage[indexPath.row]
         let description = garages.make + " " + garages.model + " " + garages.trim + " " + garages.year
         
@@ -80,7 +79,7 @@ class GarageTableViewController: UITableViewController {
                 garage.append(vehicle)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-            vehicles?.saveVehicle()
+            vehicle.saveVehicle()
             print(garage)
         }
     }
@@ -101,18 +100,16 @@ class GarageTableViewController: UITableViewController {
         }
         
         garage += [vehicle1, vehicle2]
-
+        
         loadVehicleFromArray()
     }
     
     func loadVehicleFromArray() {
-       
-        do {
-            let x = vehicles?.loadVehicle()
-            if x != nil {
-                garage.append(x!)
-                print(garage)
-            }
+        let x = vehicles.loadVehicle()
+        if x != nil {
+            garage.append(x!)
+            print(garage)
+            print(garage[garage.count].name as Any)
         }
     }
     
@@ -129,33 +126,33 @@ class GarageTableViewController: UITableViewController {
             // Delete the row from the data source
             
             garage.remove(at: indexPath.row)
-            vehicles?.saveVehicle()
+            vehicles.saveVehicle()
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     
-
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -185,5 +182,5 @@ class GarageTableViewController: UITableViewController {
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
-
+    
 }
