@@ -16,9 +16,8 @@ class HomeGraphsViewController: UIPageViewController, UIPageViewControllerDataSo
         let viewController1 = storyBoard.instantiateViewController(withIdentifier: "graph1VC")
         let viewController2 = storyBoard.instantiateViewController(withIdentifier: "graph2VC")
         let viewController3 = storyBoard.instantiateViewController(withIdentifier: "graph3VC")
-        let viewController4 = storyBoard.instantiateViewController(withIdentifier: "liveMap")
         
-        return [viewController1, viewController2, viewController3, viewController4]
+        return [viewController1, viewController2, viewController3]
     }()
     
     override func viewDidLoad() {

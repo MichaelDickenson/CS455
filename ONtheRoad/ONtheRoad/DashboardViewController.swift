@@ -8,8 +8,9 @@
 
 import UIKit
 import HealthKit
+import CoreLocation
 
-class DashboardViewController: UIViewController, UIScrollViewDelegate {
+class DashboardViewController: UIViewController, UIScrollViewDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -17,6 +18,7 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var velocityLabel: UILabel!
     
+    var locationManager: CLLocationManager!
     var newTrip: TripData?
     lazy var stopWatch = Timer()
     var startTime = TimeInterval()
@@ -32,6 +34,49 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: GPS
+    
+    
+    //Starts the trip
+    func startTrip(){
+        tripLocationData.append(Location.init(timeStamp: Date.init(), latitude: 0, longitude: 0)!)
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.activityType = .automotiveNavigation
+        locationManager.distanceFilter = 10.0
+        locationManager.requestAlwaysAuthorization()
+        print("Trip Started")
+        locationManager.startUpdatingLocation()
+    }
+    
+    //Stops the trip
+    func endTrip(){
+        locationManager.stopUpdatingLocation()
+        self.endTime = Date.init()
+        self.tripLength = self.endTime?.timeIntervalSince(self.startTime!)
+        self.odometerEnd = self.odometerStart! + Int(self.tripDistance)
+    }
+    
+    //locationManager() is called everytime the GPS updates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //for each location the GPS returns, update tripLocationData with a new Location
+        for location in locations{
+            
+            //Bananas are delicious
+            print ("BANANAS")
+            //print (self.locations.count)
+            
+            //If locations is not empty, calculate all
+            if self.locations.count > 0 {
+                newTrip?.addCLLocation(location: self.location)
+                print(location.coordinate.latitude)
+                print(location.coordinate.longitude)
+            }
+        }
     }
     
     
@@ -63,7 +108,6 @@ class DashboardViewController: UIViewController, UIScrollViewDelegate {
         seconds += 1
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(seconds))
         timeLabel.text = String(format: "%02d", h) + ":" + String(format: "%02d", m) + ":"+String(format: "%02d", s)
-        print ("****")
        // print(newTrip?.tripLocationData[(newTrip?.tripLocationData.count)!-1].instAcceleration)
         
     }
