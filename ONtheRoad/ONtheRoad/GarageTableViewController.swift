@@ -19,11 +19,9 @@ class GarageTableViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
-        if let savedVehicles = vehicles.loadVehicle() {
-            garage.append(savedVehicles)
-        }
-        
+        loadVehicleFromArray()
         //loadSampleData()
+        
         print(garage)
         
     }
@@ -79,7 +77,7 @@ class GarageTableViewController: UITableViewController {
                 garage.append(vehicle)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-            vehicle.saveVehicle()
+            //vehicle.saveVehicle(numberOfVehicle)
             print(garage)
         }
     }
@@ -105,11 +103,20 @@ class GarageTableViewController: UITableViewController {
     }
     
     func loadVehicleFromArray() {
-        let x = vehicles.loadVehicle()
-        if x != nil {
-            garage.append(x!)
-            print(garage)
-            print(garage[garage.count].name as Any)
+        var count = 1
+        
+        //ONTINEUSGH is a boolean to control loop
+        //Variable name represents success after long periods of failure
+        var ONTINEUSGH = true
+        while(ONTINEUSGH) {
+            if let savedVehicles = self.vehicles.loadVehicle(numberOfVehicle: count) {
+                print("Inside first part of loadVehicleFromArray")
+                self.garage.append(savedVehicles)
+                count += 1
+            }
+            else{
+                ONTINEUSGH = false
+            }
         }
     }
     
@@ -121,12 +128,17 @@ class GarageTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            
             // Delete the row from the data source
+            let rowNum = indexPath.row
             
             garage.remove(at: indexPath.row)
-            vehicles.saveVehicle()
+            vehicles.deleteVehicle(numberOfVehicle: rowNum)
+            
+            print("This is row number")
+            print(rowNum)
+            //garage.insert(vehicles, at: rowNum)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {

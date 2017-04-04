@@ -78,6 +78,9 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
         saveButton.isEnabled = false
+        if vehicleName.text != "" && vehicleMake.text != "" && vehicleModel.text != "" && vehicleYear.text != "" && vehicleTrim.text != "" {
+            saveButton.isEnabled = true
+        }
     }
     
     // MARK: Segue for passing values for API calls and save button for adding vehicle
@@ -140,7 +143,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         // Values to be passed ****************************************************************************
         vehicles = VehicleProfile(photo: photo!, name: name!, make: make!, model: model!, year: year!, trim: trim!, type: type, id: "", maxAcceleration: maxAccel, efficiency: efficiency, cylinder: cylinder!, size: size!, horsepower: horsepower!, torque: torque!, gas: gas!)
         
-        vehicles?.saveVehicle()
+        
+        VehicleProfile.numberOfVehiclesSaved += 1
+        vehicles?.saveVehicle(numberOfVehicle: VehicleProfile.numberOfVehiclesSaved)
+        
     }
     
     // MARK: Actions
@@ -457,7 +463,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let selectedStyleID = styleID
         
         let urlBase = "https://api.edmunds.com/api/vehicle/v2/styles/"
-        let urlExtra = "/equipment?fmt=json&api_key=8zc8djuwwteevqe9nea3cejq" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
+        let urlExtra = "/equipment?fmt=json&api_key=b3aa4xkn4mc964zcpnzm3pmv" //b3aa4xkn4mc964zcpnzm3pmv, 8zc8djuwwteevqe9nea3cejq, gjppwybke2wgy6ndafz23cyr
         let fullURL = URL(string: "\(urlBase)\(selectedStyleID)\(urlExtra)")
         
         do {

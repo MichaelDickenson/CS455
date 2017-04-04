@@ -13,7 +13,7 @@ class VehicleProfile: NSObject, NSCoding {
     
     // MARK: Properties
     
-    var photo: UIImage?
+    var photo: UIImage = #imageLiteral(resourceName: "defaultPhoto")
     var name: String? = ""
     var make: String = ""
     var model: String = ""
@@ -30,14 +30,15 @@ class VehicleProfile: NSObject, NSCoding {
     var gas: String = ""
     
     // MARK: Archiving Paths
+    static var numberOfVehiclesSaved: Int = 0
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("vehicles")
+    //static let ArchiveURL = DocumentsDirectory.appendingPathComponent("vehicles")
     
     // MARK: Types
     
     struct PropertyKey {
-        static let photo = "name"
+        static let photo = "photo"
         static let name = "name"
         static let make = "make"
         static let model = "model"
@@ -52,6 +53,7 @@ class VehicleProfile: NSObject, NSCoding {
         static let horsepower = "horsepower"
         static let torque = "torque"
         static let gas = "gas"
+        static let numberOfVehiclesSaved = "numberOfVehiclesSaved"
     }
     
     //MARK: Initialization
@@ -60,7 +62,7 @@ class VehicleProfile: NSObject, NSCoding {
         //Quick Initializer
     }
     
-    init?(photo: UIImage?, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Double, efficiency: Double, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
+    init?(photo: UIImage, name: String, make: String, model: String, year: String, trim: String, type: String, id: String, maxAcceleration: Double, efficiency: Double, cylinder: String, size: String, horsepower: String, torque: String, gas: String) {
 
         // Initialize stored properties.
         self.photo = photo
@@ -98,6 +100,7 @@ class VehicleProfile: NSObject, NSCoding {
         aCoder.encode(horsepower, forKey: PropertyKey.horsepower)
         aCoder.encode(torque, forKey: PropertyKey.torque)
         aCoder.encode(gas, forKey: PropertyKey.gas)
+        aCoder.encode(VehicleProfile.numberOfVehiclesSaved, forKey: PropertyKey.numberOfVehiclesSaved)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -159,17 +162,28 @@ class VehicleProfile: NSObject, NSCoding {
             os_log("Unable to decode the gas for a Vehicle object.", log: OSLog.default, type: .debug)
             return nil
         }
+        guard let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage else {
+            os_log("Unable to decode the IMAGE for a Vehicle object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let numberOfVehiclesSaved = aDecoder.decodeInteger(forKey: PropertyKey.numberOfVehiclesSaved) as Int? else {
+            os_log("Unable to decode the numberOfVehiclesSaved for a Vehicle object.", log: OSLog.default, type: .debug)
+            return nil
+        }
         
-        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        VehicleProfile.numberOfVehiclesSaved = numberOfVehiclesSaved
         
         self.init(photo: photo, name: name, make: make, model: model, year: year, trim: trim, type: type, id: id, maxAcceleration: maxAcceleration, efficiency: efficiency, cylinder: cylinder, size: size, horsepower: horsepower, torque: torque, gas: gas)
         
+        
     }
     
-    func saveVehicle() {
-        
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self, toFile: VehicleProfile.ArchiveURL.path)
-        print(VehicleProfile.ArchiveURL.path)
+    func saveVehicle(numberOfVehicle: Int) {
+        print(numberOfVehicle)
+        let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self, toFile: currentArchiveURL.path)
+        print(currentArchiveURL.path)
+
         if isSuccessfulSave {
             os_log("Vehicle successfully saved. Did it really save?????", log: OSLog.default, type: .debug)
         } else {
@@ -177,9 +191,23 @@ class VehicleProfile: NSObject, NSCoding {
         }
     }
     
-    func loadVehicle() -> VehicleProfile?  {
-        print("I am printing this")
-        return NSKeyedUnarchiver.unarchiveObject(withFile: VehicleProfile.ArchiveURL.path) as? VehicleProfile
+    func loadVehicle(numberOfVehicle: Int) -> VehicleProfile?  {
+        print(numberOfVehicle)
+        let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
+        print("loadVehicle function completed")
+        return NSKeyedUnarchiver.unarchiveObject(withFile: currentArchiveURL.path) as? VehicleProfile
+    }
+    
+    func deleteVehicle(numberOfVehicle: Int){
+        print("Deleting Vehicle Number: " + String(numberOfVehicle))
+        let currentArchiveURL = VehicleProfile.DocumentsDirectory.appendingPathComponent(String(numberOfVehicle))
+        do {
+            try FileManager.default.removeItem(at: currentArchiveURL)
+
+        } catch {
+            print ("Catch the Error")
+        }
+        
     }
 }
 
