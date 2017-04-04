@@ -1,5 +1,7 @@
 import UIKit
 import CoreLocation
+import MapKit
+import CoreData
 
 class TripData: NSObject, CLLocationManagerDelegate{
     
