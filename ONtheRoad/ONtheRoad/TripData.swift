@@ -22,6 +22,8 @@ class TripData: NSObject, CLLocationManagerDelegate{
     var tripLength: Double?
     var tripDistance: Double = 0
     
+    lazy var locations = [CLLocation]()
+    
     var tripLocationData = [Location]()
     
     init?(vehicleID: Int, name: String?, odometerStart: Int?, vehicleMaxAccel: Double?){
@@ -35,6 +37,51 @@ class TripData: NSObject, CLLocationManagerDelegate{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: GPS
+    
+    //Starts the trip
+    func startTrip(){
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.activityType = .automotiveNavigation
+        locationManager.distanceFilter = 10.0
+        locationManager.requestAlwaysAuthorization()
+        
+        startTime = Date.init()
+        print("Trip Started")
+        locationManager.startUpdatingLocation()
+    }
+    
+    //Stops the trip
+    func endTrip(){
+        locationManager.stopUpdatingLocation()
+        endTime = Date.init()
+    }
+    
+    //locationManager() is called everytime the GPS updates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //for each location the GPS returns, update tripLocationData with a new Location
+        for location in locations{
+            
+            //Bananas are delicious
+            print ("BANANAS")
+            print (self.locations.count)
+            //          print(location.coordinate.latitude)
+            //          print(location.coordinate.longitude)
+            //If locations is not empty, calculate all
+            if self.locations.count > 0 {
+                let distanceSinceLast = location.distance(from: self.locations.last!)
+                addCLLocation(location: location, distanceSinceLast: distanceSinceLast)
+                print ("d: ", distanceSinceLast)
+                //              print(location.coordinate.latitude)
+                //              print(location.coordinate.longitude)
+            }
+            self.locations.append(location)
+        }
     }
     
     func addCLLocation(location: CLLocation, distanceSinceLast: Double)
